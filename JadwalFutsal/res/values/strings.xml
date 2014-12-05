@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Jadwal Futsal</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="dialog_norek">No Rekening</string>
+    <string name="dialog_booking">Booking</string>
+    <string name="dialog_no_hp">No Handphone</string>
+    <string name="dialog_atas_nama">Pemilik Nomor Rekening</string>
+    <string name="dialog_tanggal">Tanggal</string>
+    <string name="dialog_jumlah_transfer">Jumlah Transfer</string>
+    <string name="dialog_status">Jenis Booking</string>
+    
+    <string name="dialog_sumit">Submit</string>
+    <string name="dialog_cancel">Cancel</string>
+
+        <string name="dateSliderTitle">Selected date</string>
+</resources>

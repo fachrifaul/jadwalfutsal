@@ -25,7 +25,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.inqbarna.tablefixheaders.adapters.BaseTableAdapter;
-
+/*my first*/
 public class TableJadwalAdapter extends BaseTableAdapter {
 	Context context;
 	Spinner bank, jenis;

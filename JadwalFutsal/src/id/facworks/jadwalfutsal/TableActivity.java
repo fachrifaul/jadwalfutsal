@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.inqbarna.tablefixheaders.TableFixHeaders;
 import com.inqbarna.tablefixheaders.adapters.BaseTableAdapter;
-
+/*tet*/
 public class TableActivity extends Activity {
 
 	@Override

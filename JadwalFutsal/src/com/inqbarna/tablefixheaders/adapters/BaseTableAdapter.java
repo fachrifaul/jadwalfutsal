@@ -1,7 +1,13 @@
 package com.inqbarna.tablefixheaders.adapters;
 
+import id.facworks.jadwalfutsal.object.LapangFromJSON;
+
+import java.util.ArrayList;
+
 import android.database.DataSetObservable;
 import android.database.DataSetObserver;
+
+import com.inqbarna.tablefixheaders.TableFixHeaders;
 
 /**
  * Common base class of common implementation for an {@link TableAdapter} that
@@ -10,6 +16,11 @@ import android.database.DataSetObserver;
  * @author Brais Gabín (InQBarna)
  */
 public abstract class BaseTableAdapter implements TableAdapter {
+
+	protected ArrayList<LapangFromJSON> nolapangs;
+	protected LapangFromJSON lapangs;
+	private final Object mLock = new Object();
+	private boolean mNotifyOnChange = true;
 	private final DataSetObservable mDataSetObservable = new DataSetObservable();
 
 	@Override
@@ -38,4 +49,23 @@ public abstract class BaseTableAdapter implements TableAdapter {
 	public void notifyDataSetInvalidated() {
 		mDataSetObservable.notifyInvalidated();
 	}
+
+	public LapangFromJSON add(LapangFromJSON lapangs) {
+		synchronized (mLock) {
+			if (nolapangs != null) {
+				nolapangs.add(lapangs);
+				return lapangs;
+			} else {
+				nolapangs = new ArrayList<LapangFromJSON>();
+				nolapangs.add(lapangs);
+				return lapangs;
+				// System.out.println("no lapangs: " +
+				// nolapangs.get(0).getnomor());
+			}
+		}
+		// if (mNotifyOnChange)
+		// notifyDataSetChanged();
+		//
+	}
+
 }

@@ -4,16 +4,53 @@
     <string name="app_name">Jadwal Futsal</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="action_done">Done</string>
+    <string name="action_reset">Reset</string>
+
+    <!-- Dialog -->
     <string name="dialog_norek">No Rekening</string>
     <string name="dialog_booking">Booking</string>
-    <string name="dialog_no_hp">No Handphone</string>
-    <string name="dialog_atas_nama">Pemilik Nomor Rekening</string>
+    <string name="dialog_atas_nama">A/N</string>
     <string name="dialog_tanggal">Tanggal</string>
+    <string name="dialog_no_hp">No Handphone</string>
     <string name="dialog_jumlah_transfer">Jumlah Transfer</string>
-    <string name="dialog_status">Jenis Booking</string>
-    
+    <string name="dialog_status">Status</string>
+    <string name="dialog_kode_booking">Kode Booking</string>
     <string name="dialog_sumit">Submit</string>
     <string name="dialog_cancel">Cancel</string>
 
-        <string name="dateSliderTitle">Selected date</string>
+    <!-- Login -->
+    <string name="login_progress">Log In&#8230;</string>
+    <string name="prompt_username">            Username</string>
+    <string name="prompt_email">Email</string>
+    <string name="prompt_username_email">Username or Email</string>
+    <string name="prompt_password">Password</string>
+    <string name="prompt_name">Name</string>
+    <string name="action_login">Login</string>
+
+    <!-- Register -->
+    <string name="register_progress">Register&#8230;</string>
+    <string name="action_register">Register</string>
+
+    <!-- Error -->
+    <string name="error_invalid">This is invalid</string>
+    <string name="error_invalid_username_email">This username or email address is invalid</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_username">Usernames must be at least 5 characters.</string>
+    <string name="error_incorrect_username">This username is invalid</string>
+    <string name="error_invalid_password">Passwords must be at least 5 characters.</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+
+    <!-- Forgot -->
+    <string name="forgot_progress">&#8230;</string>
+    <string name="forgot_description">Enter your username or the email address associated with your account.</string>
+    <string name="forgot_password_success_message">Check your email to find out how to change your password</string>
+
+    <!-- week-view -->
+    <string name="action_today">Go to today</string>
+    <string name="action_day_view">Day view</string>
+    <string name="action_three_day_view">3 day view</string>
+    <string name="action_week_view">Week view</string>
+
 </resources>

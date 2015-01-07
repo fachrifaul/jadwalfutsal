@@ -4,5 +4,13 @@
     <color name="shadow_end">#00000000</color>
     <color name="bg_dialog">#F6F7F1</color>
     
+    <color name="grey">#BFBFBF</color>
+    <color name="warna_isi">#E75D2E</color>
+    <color name="warna_kosong">#EDCA54</color>
+    
+    <color name="event_color_01">#59dbe0</color>
+    <color name="event_color_02">#f57f68</color>
+    <color name="event_color_03">#87d288</color>
+    <color name="event_color_04">#f8b552</color>
     
 </resources>

@@ -4,9 +4,12 @@ import id.facworks.jadwalfutsal.R;
 import id.facworks.jadwalfutsal.db.LocationsDB;
 import id.facworks.jadwalfutsal.object.Jadwal;
 import id.facworks.jadwalfutsal.object.JadwalJam;
+import id.facworks.jadwalfutsal.object.LapangFromJSON;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
@@ -25,74 +28,103 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.inqbarna.tablefixheaders.adapters.BaseTableAdapter;
-/*my first*/
+
 public class TableJadwalAdapter extends BaseTableAdapter {
+
+	// private LapangJSON task;
 	Context context;
 	Spinner bank, jenis;
 	EditText tanggal;
-	private final JadwalJam familys[];
-	private final String headers[] = { "Jam", "Senin", "Selasa", "Rabu",
-			"Kamis", "Jumat", "Sabtu", "Minggu" };
+	private final JadwalJam nolapang[];
+	private final String waktu[] = { "Jam", "Senin", "Selasa", "Rabu", "Kamis",
+			"Jumat", "Sabtu", "Minggu" };
 
-	private final int[] widths = { 120, 100, 140, 60, 70, 60, 60, 60, };
+	private final int[] widths = { 100, 80, 80, 80, 80, 80, 80, 80, };
 	private final float density;
 
-	public TableJadwalAdapter(Context context) {
+	Random random = new Random();
+	private static final String _CHAR = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+	private static final int RANDOM_STR_LENGTH = 7;
+
+	public LapangFromJSON newPois = add(lapangs);
+	protected ArrayList<LapangFromJSON> nolapangss = new ArrayList<LapangFromJSON>();
+	//nolapangss = new ArrayList<LapangFromJSON>();
+	
+
+	public TableJadwalAdapter(Context context,
+			ArrayList<LapangFromJSON> arrayList) {
 		this.context = context;
-		familys = new JadwalJam[] { new JadwalJam("Mobiles"),
-				new JadwalJam("Tablets"), new JadwalJam("Others"), };
+		
+		nolapangss.add(lapangs);
+		
+		nolapang = new JadwalJam[] { new JadwalJam("Lapang 1"),
+				new JadwalJam("Lapang 2") };
 
 		density = context.getResources().getDisplayMetrics().density;
 
-		familys[0].list.add(new Jadwal("07.00-08.00", "HTC", "Gingerbread",
-				"10", "512 MB", "3.7\"", "512 MB", "1"));
-		familys[0].list.add(new Jadwal("08.00-09.00", "Samsung", "Gingerbread",
-				"10", "16 GB", "4\"", "512 MB", "1"));
-		familys[0].list.add(new Jadwal("09.00-10.00", "Samsung",
-				"Ice cream Sandwich", "15", "16 GB", "4.65\"", "1 GB", "1"));
-		familys[0].list.add(new Jadwal("10.00-11.00", "Samsung",
-				"Ice cream Sandwich", "15", "32 GB", "4.65\"", "1 GB", "1"));
-		familys[0].list.add(new Jadwal("11.00-12.00", "LG", "Jelly Bean", "17",
-				"8 GB", "4.7\"", "2 GB", "1"));
-		familys[0].list.add(new Jadwal("12.00-13.00", "LG", "Jelly Bean", "17",
-				"8 GB", "4.7\"", "2 GB", "1"));
-		familys[0].list.add(new Jadwal("13.00-14.00", "LG", "Jelly Bean", "17",
-				"8 GB", "4.7\"", "2 GB", "1"));
-		familys[0].list.add(new Jadwal("14.00-15.00", "LG", "Jelly Bean", "17",
-				"8 GB", "4.7\"", "2 GB", "1"));
-		familys[0].list.add(new Jadwal("15.00-16.00", "LG", "Jelly Bean", "17",
-				"8 GB", "4.7\"", "2 GB", "1"));
-		familys[0].list.add(new Jadwal("16.00-17.00", "LG", "Jelly Bean", "17",
-				"8 GB", "4.7\"", "2 GB", "1"));
-		familys[0].list.add(new Jadwal("17.00-18.00", "LG", "Jelly Bean", "17",
-				"8 GB", "4.7\"", "2 GB", "1"));
-		familys[0].list.add(new Jadwal("18.00-19.00", "LG", "Jelly Bean", "17",
-				"8 GB", "4.7\"", "2 GB", "1"));
-		familys[0].list.add(new Jadwal("19.00-20.00", "LG", "Jelly Bean", "17",
-				"8 GB", "4.7\"", "2 GB", "1"));
-		familys[0].list.add(new Jadwal("21.00-22.00", "LG", "Jelly Bean", "17",
-				"8 GB", "4.7\"", "2 GB", "1"));
-		familys[0].list.add(new Jadwal("22.00-23.00", "LG", "Jelly Bean", "17",
-				"8 GB", "4.7\"", "2 GB", "1"));
-		familys[0].list.add(new Jadwal("23.00-00.00", "LG", "Jelly Bean", "17",
-				"8 GB", "4.7\"", "2 GB", "1"));
-		familys[0].list.add(new Jadwal("Nexus 4 (16 GB)", "LG", "Jelly Bean",
-				"17", "16 GB", "4.7\"", "2 GB", "1"));
-		familys[1].list.add(new Jadwal("Nexus 7 (16 GB)", "Asus", "Jelly Bean",
-				"16", "16 GB", "7\"", "1 GB", "1"));
-		familys[1].list.add(new Jadwal("Nexus 7 (32 GB)", "Asus", "Jelly Bean",
-				"16", "32 GB", "7\"", "1 GB", "1"));
-		familys[1].list.add(new Jadwal("Nexus 10 (16 GB)", "Samsung",
-				"Jelly Bean", "17", "16 GB", "10\"", "2 GB", "1"));
-		familys[1].list.add(new Jadwal("Nexus 10 (32 GB)", "Samsung",
-				"Jelly Bean", "17", "32 GB", "10\"", "2 GB", "1"));
-		familys[2].list.add(new Jadwal("Nexus Q", "--", "Honeycomb", "13",
-				"--", "--", "--", "1"));
+		nolapang[0].list.add(new Jadwal("09.00-10.00", "Isi", "Kosong", "Isi",
+				"Isi", "Isi", "Kosong", "Isi"));
+		nolapang[0].list.add(new Jadwal("10.00-11.00", "Isi", "Kosong", "Isi",
+				"Isi", "Isi", "Kosong", "Isi"));
+		nolapang[0].list.add(new Jadwal("11.00-12.00", "Kosong", "Kosong",
+				"Isi", "Isi", "Isi", "Isi", "Isi"));
+		nolapang[0].list.add(new Jadwal("12.00-13.00", "Kosong", "Kosong",
+				"Isi", "Isi", "Isi", "Isi", "Isi"));
+		nolapang[0].list.add(new Jadwal("13.00-14.00", "Kosong", "Kosong",
+				"Isi", "Isi", "Isi", "Isi", "Isi"));
+		nolapang[0].list.add(new Jadwal("14.00-15.00", "Kosong", "Kosong",
+				"Isi", "Isi", "Isi", "Isi", "Isi"));
+		nolapang[0].list.add(new Jadwal("15.00-16.00", "Kosong", "Kosong",
+				"Isi", "Isi", "Isi", "Isi", "Isi"));
+		nolapang[0].list.add(new Jadwal("16.00-17.00", "Kosong", "Kosong",
+				"Isi", "Isi", "Isi", "Isi", "Isi"));
+		nolapang[0].list.add(new Jadwal("17.00-18.00", "Kosong", "Kosong",
+				"Isi", "Isi", "Isi", "Isi", "Isi"));
+		nolapang[0].list.add(new Jadwal("18.00-19.00", "Kosong", "Kosong",
+				"Isi", "Isi", "Isi", "Isi", "Isi"));
+		nolapang[0].list.add(new Jadwal("19.00-20.00", "Kosong", "Kosong",
+				"Isi", "Isi", "Isi", "Isi", "Isi"));
+		nolapang[0].list.add(new Jadwal("21.00-22.00", "Kosong", "Kosong",
+				"Isi", "Isi", "Isi", "Isi", "Isi"));
+		nolapang[0].list.add(new Jadwal("22.00-23.00", "Kosong", "Kosong",
+				"Isi", "Isi", "Isi", "Isi", "Isi"));
+		nolapang[0].list.add(new Jadwal("23.00-00.00", "Kosong", "Kosong",
+				"Isi", "Isi", "Isi", "Isi", "Isi"));
+
+		nolapang[1].list.add(new Jadwal("09.00-10.00", "Isi", "Kosong", "Isi",
+				"Isi", "Isi", "Kosong", "Isi"));
+		nolapang[1].list.add(new Jadwal("10.00-11.00", "Isi", "Kosong", "Isi",
+				"Isi", "Isi", "Kosong", "Isi"));
+		nolapang[1].list.add(new Jadwal("11.00-12.00", "Kosong", "Kosong",
+				"Isi", "Isi", "Isi", "Isi", "Isi"));
+		nolapang[1].list.add(new Jadwal("12.00-13.00", "Kosong", "Kosong",
+				"Isi", "Isi", "Isi", "Isi", "Isi"));
+		nolapang[1].list.add(new Jadwal("13.00-14.00", "Kosong", "Kosong",
+				"Isi", "Isi", "Isi", "Isi", "Isi"));
+		nolapang[1].list.add(new Jadwal("14.00-15.00", "Kosong", "Kosong",
+				"Isi", "Isi", "Isi", "Isi", "Isi"));
+		nolapang[1].list.add(new Jadwal("15.00-16.00", "Kosong", "Kosong",
+				"Isi", "Isi", "Isi", "Isi", "Isi"));
+		nolapang[1].list.add(new Jadwal("16.00-17.00", "Kosong", "Kosong",
+				"Isi", "Isi", "Isi", "Isi", "Isi"));
+		nolapang[1].list.add(new Jadwal("17.00-18.00", "Kosong", "Kosong",
+				"Isi", "Isi", "Isi", "Isi", "Isi"));
+		nolapang[1].list.add(new Jadwal("18.00-19.00", "Kosong", "Kosong",
+				"Isi", "Isi", "Isi", "Isi", "Isi"));
+		nolapang[1].list.add(new Jadwal("19.00-20.00", "Kosong", "Kosong",
+				"Isi", "Isi", "Isi", "Isi", "Isi"));
+		nolapang[1].list.add(new Jadwal("21.00-22.00", "Kosong", "Kosong",
+				"Isi", "Isi", "Isi", "Isi", "Isi"));
+		nolapang[1].list.add(new Jadwal("22.00-23.00", "Kosong", "Kosong",
+				"Isi", "Isi", "Isi", "Isi", "Isi"));
+		nolapang[1].list.add(new Jadwal("23.00-00.00", "Kosong", "Kosong",
+				"Isi", "Isi", "Isi", "Isi", "Isi"));
+
 	}
 
 	@Override
 	public int getRowCount() {
-		return 24;
+		return 30;
 	}
 
 	@Override
@@ -103,6 +135,7 @@ public class TableJadwalAdapter extends BaseTableAdapter {
 	@Override
 	public View getView(int row, int column, View convertView, ViewGroup parent) {
 		final View view;
+
 		switch (getItemViewType(row, column)) {
 		case 0:
 			view = getFirstHeader(row, column, convertView, parent);
@@ -134,7 +167,7 @@ public class TableJadwalAdapter extends BaseTableAdapter {
 					parent, false);
 		}
 		TextView header = ((TextView) convertView.findViewById(R.id.text1));
-		header.setText(headers[0]);
+		header.setText(waktu[0]);
 		return convertView;
 	}
 
@@ -147,7 +180,7 @@ public class TableJadwalAdapter extends BaseTableAdapter {
 					false);
 		}
 		TextView header = ((TextView) convertView.findViewById(R.id.text1));
-		header.setText(headers[column + 1]);
+		header.setText(waktu[column + 1]);
 		return convertView;
 	}
 
@@ -160,10 +193,10 @@ public class TableJadwalAdapter extends BaseTableAdapter {
 					false);
 		}
 		convertView
-				.setBackgroundResource(row % 2 == 0 ? R.drawable.bg_table_color1
-						: R.drawable.bg_table_color2);
+				.setBackgroundResource(row % 2 == 0 ? R.drawable.bg_table_color3
+						: R.drawable.bg_table_color3);
 		((TextView) convertView.findViewById(R.id.text1))
-				.setText(getDevice(row).data[column + 1]);
+				.setText(getStatusLapang(row).data[column + 1]);
 		return convertView;
 	}
 
@@ -174,31 +207,74 @@ public class TableJadwalAdapter extends BaseTableAdapter {
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 			convertView = inflater.inflate(R.layout.item_table, parent, false);
 		}
-		convertView
-				.setBackgroundResource(row % 2 == 0 ? R.drawable.bg_table_color1
-						: R.drawable.bg_table_color2);
+		// convertView
+		// .setBackgroundResource(row % 2 == 0 ? R.drawable.bg_table_color1
+		// : R.drawable.bg_table_color2);
+		int no_lapang = 0;
+
+		// task = new LapangJSON();
+		// task.execute();
+
+		// String tasi = task.get();
+		// System.out.println("tasi: " + tasi);
+
+		// int ukuran = newPois.size();
+		// System.out.println("ukuran: " + newPois.size());
+		// final String string;
+		// if (column == -1) {
+		// string = getLapang(row).name;
+		// System.out.println("nama lapang: " + string);
+		// for (int i = 0; i <= ukuran; i++) {
+		// if (string == newPois.get(i).getnomor()) {
+		// no_lapang = 0;
+		//
+		// System.out.println("lapangs: " + newPois.get(i).getnomor());
+		// }
+		// // } else if (string == newPois.get(i).getnomor()) {
+		// // no_lapang = 1;
+		// // // JadwalJam rowItem = getLapang(no_lapang);
+		// // }
+		// }
+		// } else {
+		// string = "";
+		// }
+
+		if (getStatusLapang(row).data[column + 1] == "Isi") {
+			convertView.setBackgroundResource(R.drawable.bg_table_color1);
+		} else {
+			convertView.setBackgroundResource(R.drawable.bg_table_color2);
+		}
 
 		TextView header = ((TextView) convertView.findViewById(R.id.text1));
-		header.setText(getDevice(row).data[column + 1]);
+		header.setText(getStatusLapang(row).data[column + 1]);
 		header.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 
-				if (getDevice(row).data[column + 1] == "LG") {
-					Toast.makeText(context, "Sudah Dibooking!",
+				if (getStatusLapang(row).data[column + 1] == "Isi") {
+					Toast.makeText(context, "Sudah ada yang Booking!",
 							Toast.LENGTH_SHORT).show();
 				} else {
 					// Toast.makeText(context,
 					// "yes! "+getDevice(row).data[column + 1],
 					// Toast.LENGTH_SHORT).show();
+					/*
+					 * Dialog dialog = new Dialog(context);
+					 * dialog.setContentView(R.layout.dialog_booking);
+					 * dialog.setTitle("Booking");
+					 * 
+					 * EditText code_booking = (EditText) dialog
+					 * .findViewById(R.id.KodeBoooking);
+					 * code_booking.setText(getRandomString());
+					 * 
+					 * dialog.show();
+					 */
 					bookingdialog();
-
 				}
 
 			}
-
 		});
 		// ((TextView)
 		// convertView.findViewById(R.id.text1)).setText(getDevice(row).data[column
@@ -215,9 +291,19 @@ public class TableJadwalAdapter extends BaseTableAdapter {
 			convertView = inflater.inflate(R.layout.item_table_family, parent,
 					false);
 		}
+
 		final String string;
 		if (column == -1) {
-			string = getFamily(row).name;
+			string = getLapang(row).name;
+
+			System.out.println("nama lapang: " + string);
+			System.out.println("ukuran: " + nolapangss.size());
+			System.out.println("lapangs: " + nolapangss.get(0));
+			// for (int i = 0; i <= newPois.size(); i++) {
+			// if (string == newPois.get(i).getnomor()) {
+			// System.out.println("lapangs: " + newPois.get(0).getnomor());
+			// }
+			// }
 		} else {
 			string = "";
 		}
@@ -263,29 +349,29 @@ public class TableJadwalAdapter extends BaseTableAdapter {
 	private boolean isFamily(int row) {
 		int family = 0;
 		while (row > 0) {
-			row -= familys[family].size() + 1;
+			row -= nolapang[family].size() + 1;
 			family++;
 		}
 		return row == 0;
 	}
 
-	private JadwalJam getFamily(int row) {
-		int family = 0;
+	private JadwalJam getLapang(int row) {
+		int nomor = 0;
 		while (row >= 0) {
-			row -= familys[family].size() + 1;
-			family++;
+			row -= nolapang[nomor].size() + 1;
+			nomor++;
 		}
-		return familys[family - 1];
+		return nolapang[nomor - 1];
 	}
 
-	private Jadwal getDevice(int row) {
-		int family = 0;
+	private Jadwal getStatusLapang(int row) {
+		int nomor = 0;
 		while (row >= 0) {
-			row -= familys[family].size() + 1;
-			family++;
+			row -= nolapang[nomor].size() + 1;
+			nomor++;
 		}
-		family--;
-		return familys[family].get(row + familys[family].size());
+		nomor--;
+		return nolapang[nomor].get(row + nolapang[nomor].size());
 	}
 
 	@Override
@@ -293,11 +379,31 @@ public class TableJadwalAdapter extends BaseTableAdapter {
 		return 5;
 	}
 
+	private int getRandomNumber() {
+		int randomInt = 0;
+		randomInt = random.nextInt(_CHAR.length());
+		if (randomInt - 1 == -1) {
+			return randomInt;
+		} else {
+			return randomInt - 1;
+		}
+	}
+
+	public String getRandomString() {
+		StringBuffer randStr = new StringBuffer();
+		for (int i = 0; i < RANDOM_STR_LENGTH; i++) {
+			int number = getRandomNumber();
+			char ch = _CHAR.charAt(number);
+			randStr.append(ch);
+		}
+		return randStr.toString();
+	}
+
 	private void bookingdialog() {
 		// TODO Auto-generated method stub
 		final Dialog dialog = new Dialog(context);
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		dialog.setContentView(R.layout.layout_dialog);
+		dialog.setContentView(R.layout.dialog_booking);
 		dialog.setTitle("Booking");
 
 		bank = (Spinner) dialog.findViewById(R.id.rekening);
@@ -324,6 +430,10 @@ public class TableJadwalAdapter extends BaseTableAdapter {
 			}
 
 		});
+
+		EditText code_booking = (EditText) dialog
+				.findViewById(R.id.KodeBoooking);
+		code_booking.setText(getRandomString());
 
 		// Loading spinner data from database
 		loadSpinnerData();
@@ -380,5 +490,79 @@ public class TableJadwalAdapter extends BaseTableAdapter {
 		bank.setAdapter(dataAdapter);
 		jenis.setAdapter(jenisAdapter);
 	}
+
+	// private class LapangJSON extends AsyncTask<Integer, Object, String> {
+	//
+	// @Override
+	// protected void onPreExecute() {
+	// super.onPreExecute();
+	//
+	// // if (listView != null) {
+	// // if (loadingFooterView == null) {
+	// // loadingFooterView = getActivity().getLayoutInflater()
+	// // .inflate(R.layout.load_more_footer, null);
+	// // ((ListView) listView).addFooterView(loadingFooterView);
+	// // }
+	// // }
+	//
+	// }
+	//
+	// protected String doInBackground(Integer... params) {
+	// WebApi api = WebApi.getInstance();
+	// try {
+	// newPois = api.getLapang();
+	// } catch (Exception e) {
+	// e.printStackTrace();
+	// return e.getMessage();
+	// }
+	//
+	// return null;
+	//
+	// }
+	//
+	// protected void onPostExecute(String result) {
+	// // if (isCancelled)
+	// if (result == null) {
+	// for (int i = 0; i <= newPois.size() - 1; i++) {
+	// System.out.println("lapang: " + newPois.get(i).getnomor());
+	// // if (string == "Lapang" + newPois.get(i)) {
+	// //
+	// // }
+	// }
+	// }
+	// // if (listView != null) {
+	// // if (loadingFooterView != null) {
+	// // ((ListView) listView).removeFooterView(loadingFooterView);
+	// // loadingFooterView = null;
+	// // }
+	// // if (result == null) {
+	// // // if (newPois.size() == 0) {
+	// // // // No more data can be fetched
+	// // // page = -1;
+	// // // } else {
+	// // // page++;
+	// // for (Barang city : newPois) {
+	// // if (isCancelled)
+	// // return;
+	// // adapter.add(city);
+	// // adapter.notifyDataSetChanged();
+	// // }
+	// // // }
+	// // } else {
+	// // Toast.makeText(getActivity(), result, Toast.LENGTH_LONG)
+	// // .show();
+	// // }
+	// // if (isCancelled)
+	// // return;
+	// //
+	// // if (adapter.getCount() == 0) {
+	// // ((ListView) listView).addFooterView(getActivity()
+	// // .getLayoutInflater().inflate(
+	// // R.layout.empty_content, null));
+	// // }
+	// // }
+	// super.onPostExecute(result);
+	// }
+	// }
 
 }

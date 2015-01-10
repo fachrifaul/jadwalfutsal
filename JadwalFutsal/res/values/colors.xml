@@ -5,8 +5,8 @@
     <color name="bg_dialog">#F6F7F1</color>
     
     <color name="grey">#BFBFBF</color>
-    <color name="warna_isi">#E75D2E</color>
-    <color name="warna_kosong">#EDCA54</color>
+    <color name="warna_kosong">#80A6CD</color>
+    <color name="warna_isi_biasa">#EDCA54</color>
     
     <color name="event_color_01">#59dbe0</color>
     <color name="event_color_02">#f57f68</color>

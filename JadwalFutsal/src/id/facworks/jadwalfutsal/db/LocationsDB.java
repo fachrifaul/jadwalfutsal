@@ -1,5 +1,7 @@
 package id.facworks.jadwalfutsal.db;
 
+import id.facworks.jadwalfutsal.object.Lapang;
+
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -25,13 +27,22 @@ public class LocationsDB extends SQLiteOpenHelper {
 	private static int VERSION = 1;
 
 	/** A constant, stores the the table name */
-	private static final String DATABASE_TABLE = "bank";
-	public static final String FIELD_ROW_ID = "id";
-	public static final String FIELD_NAME = "name";
+	private static final String DATABASE_TABLE_BANK = "bank";
+	public static final String FIELD_ROW_ID_BANK = "id";
+	public static final String FIELD_NAME_BANK = "name";
 
 	private static final String DATABASE_TABLE_JENIS = "jenis";
 	public static final String FIELD_ROW_ID_JENIS = "id";
 	public static final String FIELD_NAME_JENIS = "name";
+	
+	private static final String DATABASE_TABLE_JADWAL = "jadwal";
+	public static final String FIELD_ROW_ID_JADWAL = "lid";
+	public static final String FIELD_CODE_JADWAL = "code_booking";
+	public static final String FIELD_KATEGORI_JADWAL = "kategori_lapang";
+	public static final String FIELD_TANGGAL_JADWAL = "tanggal";
+	public static final String FIELD_JAM_JADWAL = "jam";
+	public static final String FIELD_STATUS_JADWAL = "status";
+
 
 	/** An instance variable for SQLiteDatabase */
 	private SQLiteDatabase mDB;
@@ -63,28 +74,28 @@ public class LocationsDB extends SQLiteOpenHelper {
 
 	/** Inserts a new location to the table locations */
 	public long insert(ContentValues contentValues) {
-		long rowID = mDB.insert(DATABASE_TABLE, null, contentValues);
+		long rowID = mDB.insert(DATABASE_TABLE_BANK, null, contentValues);
 		return rowID;
 
 	}
 
 	/** Deletes all locations from the table */
 	public int del() {
-		int cnt = mDB.delete(DATABASE_TABLE, null, null);
+		int cnt = mDB.delete(DATABASE_TABLE_BANK, null, null);
 		return cnt;
 	}
 
 	/** Count Data */
 	public long alldata() {
 		SQLiteDatabase db = getReadableDatabase();
-		long cnt = DatabaseUtils.queryNumEntries(db, DATABASE_TABLE);
+		long cnt = DatabaseUtils.queryNumEntries(db, DATABASE_TABLE_BANK);
 		return cnt;
 	}
 
 	/** Returns all the locations from the table */
 	public Cursor getAllLocations() {
-		return mDB.query(DATABASE_TABLE, new String[] { FIELD_ROW_ID,
-				FIELD_NAME }, null, null, null, null, null);
+		return mDB.query(DATABASE_TABLE_BANK, new String[] { FIELD_ROW_ID_BANK,
+				FIELD_NAME_BANK }, null, null, null, null, null);
 	}
 
 	public SQLiteDatabase getDB() {
@@ -239,7 +250,7 @@ public class LocationsDB extends SQLiteOpenHelper {
 		List<String> labels = new ArrayList<String>();
 
 		// Select All Query
-		String selectQuery = "SELECT  * FROM " + DATABASE_TABLE;
+		String selectQuery = "SELECT  * FROM " + DATABASE_TABLE_BANK;
 
 		SQLiteDatabase db = this.getReadableDatabase();
 		Cursor cursor = db.rawQuery(selectQuery, null);
@@ -281,5 +292,38 @@ public class LocationsDB extends SQLiteOpenHelper {
 
 		// returning lables
 		return jenis;
+	}
+	
+	public List<Lapang> getAllLapang() {
+		List<Lapang> jadwal = new ArrayList<Lapang>();
+
+		// Select All Query
+		String selectQuery = "SELECT  * FROM " + DATABASE_TABLE_JADWAL;
+
+		SQLiteDatabase db = this.getReadableDatabase();
+		Cursor cursor = db.rawQuery(selectQuery, null);
+		
+		if (cursor.getCount() >= 1) {
+			cursor.moveToFirst();
+
+			do {
+				Lapang info = new Lapang(
+						
+						cursor.getString(cursor.getColumnIndex(FIELD_CODE_JADWAL)),
+						cursor.getString(cursor.getColumnIndex(FIELD_KATEGORI_JADWAL)),
+						cursor.getString(cursor.getColumnIndex(FIELD_TANGGAL_JADWAL)),
+						cursor.getString(cursor.getColumnIndex(FIELD_JAM_JADWAL)),
+						cursor.getString(cursor.getColumnIndex(FIELD_STATUS_JADWAL))
+						);
+				jadwal.add(info);
+
+			} while (cursor.moveToNext());
+		}
+		// closing connection
+		cursor.close();
+		db.close();
+
+		// returning lables
+		return jadwal;
 	}
 }

@@ -15,8 +15,10 @@ public final class R {
         public static final int abc_slide_in_top=0x7f040003;
         public static final int abc_slide_out_bottom=0x7f040004;
         public static final int abc_slide_out_top=0x7f040005;
-        public static final int right_slide_in=0x7f040006;
-        public static final int right_slide_out=0x7f040007;
+        public static final int expandable_hide=0x7f040006;
+        public static final int expandable_show=0x7f040007;
+        public static final int right_slide_in=0x7f040008;
+        public static final int right_slide_out=0x7f040009;
     }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
@@ -247,6 +249,10 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int columnGap=0x7f010070;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int contentLayout=0x7f010081;
         /**  Specifies a layout for custom navigation. Overrides navigationMode. 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
 or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
@@ -340,6 +346,14 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int dropdownListPreferredItemHeight=0x7f010044;
+        /** <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int duration=0x7f010082;
         /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
 Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
 in (inches), mm (millimeters).
@@ -433,6 +447,10 @@ theme attribute (in the form
 containing a value of this type.
          */
         public static final int headerColumnTextColor=0x7f010071;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int headerLayout=0x7f010080;
         /** <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
 "<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
 <p>This may also be a reference to a resource (in the form
@@ -1228,14 +1246,15 @@ containing a value of this type.
         public static final int ic_exit=0x7f020065;
         public static final int ic_launcher=0x7f020066;
         public static final int ic_profile=0x7f020067;
-        public static final int separator_table=0x7f020068;
-        public static final int separator_table_first=0x7f020069;
-        public static final int separator_table_header=0x7f02006a;
-        public static final int separator_table_header_first=0x7f02006b;
-        public static final int shadow_bottom=0x7f02006c;
-        public static final int shadow_left=0x7f02006d;
-        public static final int shadow_right=0x7f02006e;
-        public static final int shadow_top=0x7f02006f;
+        public static final int ic_rfa=0x7f020068;
+        public static final int separator_table=0x7f020069;
+        public static final int separator_table_first=0x7f02006a;
+        public static final int separator_table_header=0x7f02006b;
+        public static final int separator_table_header_first=0x7f02006c;
+        public static final int shadow_bottom=0x7f02006d;
+        public static final int shadow_left=0x7f02006e;
+        public static final int shadow_right=0x7f02006f;
+        public static final int shadow_top=0x7f020070;
     }
     public static final class id {
         public static final int KodeBoooking=0x7f090065;
@@ -1251,7 +1270,7 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f090002;
         public static final int action_menu_presenter=0x7f090003;
         public static final int action_mode_close_button=0x7f090030;
-        public static final int action_today=0x7f090078;
+        public static final int action_today=0x7f09007a;
         public static final int activity_chooser_view_content=0x7f090031;
         public static final int alamat=0x7f090058;
         public static final int alternativeDateSelectButton=0x7f090070;
@@ -1285,8 +1304,8 @@ containing a value of this type.
         public static final int ifRoom=0x7f090014;
         public static final int image=0x7f090033;
         public static final int image2=0x7f090035;
-        public static final int item_exit=0x7f09007a;
-        public static final int item_profile=0x7f090079;
+        public static final int item_exit=0x7f09007c;
+        public static final int item_profile=0x7f09007b;
         public static final int jenisbooking=0x7f090064;
         public static final int jumlah_transfer=0x7f090063;
         public static final int length_long=0x7f090024;
@@ -1358,6 +1377,8 @@ containing a value of this type.
         public static final int useLogo=0x7f090011;
         public static final int username=0x7f09004d;
         public static final int usernameEmail=0x7f09006a;
+        public static final int view_expandable_contentLayout=0x7f090079;
+        public static final int view_expandable_headerlayout=0x7f090078;
         public static final int wednesday=0x7f090023;
         public static final int weekView=0x7f090053;
         public static final int withText=0x7f090016;
@@ -1426,6 +1447,7 @@ containing a value of this type.
         public static final int main=0x7f030023;
         public static final int support_simple_spinner_dropdown_item=0x7f030024;
         public static final int table=0x7f030025;
+        public static final int view_expandable=0x7f030026;
     }
     public static final class menu {
         public static final int main=0x7f0c0000;
@@ -1484,6 +1506,7 @@ containing a value of this type.
         public static final int action_today=0x7f0a0030;
         public static final int action_week_view=0x7f0a0033;
         public static final int app_name=0x7f0a000d;
+        public static final int app_name_2=0x7f0a000e;
         public static final int dialog_atas_nama=0x7f0a0014;
         public static final int dialog_booking=0x7f0a0013;
         public static final int dialog_cancel=0x7f0a001b;
@@ -1511,7 +1534,6 @@ containing a value of this type.
         /**  Forgot 
          */
         public static final int forgot_progress=0x7f0a002d;
-        public static final int hello_world=0x7f0a000e;
         /**  Login 
          */
         public static final int login_progress=0x7f0a001c;
@@ -2348,6 +2370,57 @@ or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>na
           @attr name id.facworks.jadwalfutsal:textAllCaps
         */
         public static final int CompatTextView_textAllCaps = 0;
+        /** Attributes that can be used with a ExpandableLayout.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #ExpandableLayout_contentLayout id.facworks.jadwalfutsal:contentLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #ExpandableLayout_duration id.facworks.jadwalfutsal:duration}</code></td><td></td></tr>
+           <tr><td><code>{@link #ExpandableLayout_headerLayout id.facworks.jadwalfutsal:headerLayout}</code></td><td></td></tr>
+           </table>
+           @see #ExpandableLayout_contentLayout
+           @see #ExpandableLayout_duration
+           @see #ExpandableLayout_headerLayout
+         */
+        public static final int[] ExpandableLayout = {
+            0x7f010080, 0x7f010081, 0x7f010082
+        };
+        /**
+          <p>This symbol is the offset where the {@link id.facworks.jadwalfutsal.R.attr#contentLayout}
+          attribute's value can be found in the {@link #ExpandableLayout} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name id.facworks.jadwalfutsal:contentLayout
+        */
+        public static final int ExpandableLayout_contentLayout = 1;
+        /**
+          <p>This symbol is the offset where the {@link id.facworks.jadwalfutsal.R.attr#duration}
+          attribute's value can be found in the {@link #ExpandableLayout} array.
+
+
+          <p>Must be an integer value, such as "<code>100</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name id.facworks.jadwalfutsal:duration
+        */
+        public static final int ExpandableLayout_duration = 2;
+        /**
+          <p>This symbol is the offset where the {@link id.facworks.jadwalfutsal.R.attr#headerLayout}
+          attribute's value can be found in the {@link #ExpandableLayout} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name id.facworks.jadwalfutsal:headerLayout
+        */
+        public static final int ExpandableLayout_headerLayout = 0;
         /** Attributes that can be used with a LinearLayoutICS.
            <p>Includes the following attributes:</p>
            <table>

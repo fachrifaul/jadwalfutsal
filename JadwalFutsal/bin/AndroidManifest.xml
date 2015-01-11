@@ -30,7 +30,9 @@
         </activity>
         <activity android:name="id.facworks.jadwalfutsal.TableActivity" >
         </activity>
-        <activity android:name="id.facworks.jadwalfutsal.MainActivity" >
+        <activity
+            android:name="id.facworks.jadwalfutsal.MainActivity"
+            android:label="@string/app_name_2" >
         </activity>
 
         <provider

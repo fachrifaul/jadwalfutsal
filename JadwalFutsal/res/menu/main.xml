@@ -3,17 +3,17 @@
     <item
         android:id="@+id/action_today"
         android:icon="@drawable/ic_action_go_to_today"
-        android:showAsAction="ifRoom"
+        android:showAsAction="always"
         android:title="@string/action_today"/>
     <item
         android:id="@+id/item_profile"
         android:icon="@drawable/ic_profile"
-        android:showAsAction="ifRoom"
+        android:showAsAction="always"
         android:title="Profile"/>
     <item
         android:id="@+id/item_exit"
         android:icon="@drawable/ic_exit"
-        android:showAsAction="ifRoom"
+        android:showAsAction="always"
         android:title="Exit"/>
 
     <!--

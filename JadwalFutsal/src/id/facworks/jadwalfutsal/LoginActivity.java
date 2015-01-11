@@ -163,20 +163,20 @@ public class LoginActivity extends Activity {
 				});
 	}
 
-	@Override
-	protected void onResume() {
-		Log.d("JadwalFutsal", "resume login");
-
-		SharedPreferences prefs = PreferenceManager
-				.getDefaultSharedPreferences(getApplicationContext());
-		if ((prefs.contains(Extra.LOGIN_USER_ID_KEY))
-				&& (!prefs.getString(Extra.LOGIN_USER_ID_KEY, "").equals(""))) {
-			//startActivity(new Intent(LoginActivity.this, TableActivity.class));
-			startActivity(new Intent(LoginActivity.this, SplashActivity.class));
-			finish();
-		}
-		super.onResume();
-	}
+	// @Override
+	// protected void onResume() {
+	// Log.d("JadwalFutsal", "resume login");
+	//
+	// SharedPreferences prefs = PreferenceManager
+	// .getDefaultSharedPreferences(getApplicationContext());
+	// if ((prefs.contains(Extra.LOGIN_USER_ID_KEY))
+	// && (!prefs.getString(Extra.LOGIN_USER_ID_KEY, "").equals(""))) {
+	// //startActivity(new Intent(LoginActivity.this, TableActivity.class));
+	// startActivity(new Intent(LoginActivity.this, SplashActivity.class));
+	// finish();
+	// }
+	// super.onResume();
+	// }
 
 	/**
 	 * Attempts to sign in or register the account specified by the login form.
@@ -363,9 +363,10 @@ public class LoginActivity extends Activity {
 			showProgress(false);
 			if (!isCancelled) {
 				if (result == null) {
+
 					finish();
-//					startActivity(new Intent(LoginActivity.this,
-//							TableActivity.class));
+					// startActivity(new Intent(LoginActivity.this,
+					// TableActivity.class));
 					startActivity(new Intent(LoginActivity.this,
 							SplashActivity.class));
 
@@ -444,6 +445,15 @@ public class LoginActivity extends Activity {
 			task = null;
 			showProgress(false);
 		}
+	}
+	
+	public void onBackPressed() {
+		super.onBackPressed();
+		finish();
+		Intent newIntent = new Intent(LoginActivity.this,
+				HomeActivity.class);
+		startActivity(newIntent);
+		overridePendingTransition(R.anim.right_slide_in, R.anim.right_slide_out);
 	}
 
 }

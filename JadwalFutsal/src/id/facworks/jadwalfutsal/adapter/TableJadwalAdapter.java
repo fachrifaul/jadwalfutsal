@@ -403,7 +403,7 @@ public class TableJadwalAdapter extends BaseTableAdapter {
 		// TODO Auto-generated method stub
 		final Dialog dialog = new Dialog(context);
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		dialog.setContentView(R.layout.dialog_booking);
+		dialog.setContentView(R.layout.layout_dialog_booking);
 		dialog.setTitle("Booking");
 
 		bank = (Spinner) dialog.findViewById(R.id.rekening);

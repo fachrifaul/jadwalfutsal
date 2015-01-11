@@ -34,7 +34,11 @@ public class LocationsDB extends SQLiteOpenHelper {
 	private static final String DATABASE_TABLE_JENIS = "jenis";
 	public static final String FIELD_ROW_ID_JENIS = "id";
 	public static final String FIELD_NAME_JENIS = "name";
-	
+
+	private static final String DATABASE_TABLE_JAM = "jam";
+	public static final String FIELD_ROW_ID_JAM = "id";
+	public static final String FIELD_NAME_JAM = "jam";
+
 	private static final String DATABASE_TABLE_JADWAL = "jadwal";
 	public static final String FIELD_ROW_ID_JADWAL = "lid";
 	public static final String FIELD_CODE_JADWAL = "code_booking";
@@ -42,7 +46,6 @@ public class LocationsDB extends SQLiteOpenHelper {
 	public static final String FIELD_TANGGAL_JADWAL = "tanggal";
 	public static final String FIELD_JAM_JADWAL = "jam";
 	public static final String FIELD_STATUS_JADWAL = "status";
-
 
 	/** An instance variable for SQLiteDatabase */
 	private SQLiteDatabase mDB;
@@ -293,7 +296,27 @@ public class LocationsDB extends SQLiteOpenHelper {
 		// returning lables
 		return jenis;
 	}
-	
+
+	public List<String> getAllJam() {
+		List<String> jam = new ArrayList<String>();
+
+		String selectQuery = "SELECT  * FROM " + DATABASE_TABLE_JAM;
+
+		SQLiteDatabase db = this.getReadableDatabase();
+		Cursor cursor = db.rawQuery(selectQuery, null);
+
+		if (cursor.moveToFirst()) {
+			do {
+				jam.add(cursor.getString(1));
+			} while (cursor.moveToNext());
+		}
+
+		cursor.close();
+		db.close();
+
+		return jam;
+	}
+
 	public List<Lapang> getAllLapang() {
 		List<Lapang> jadwal = new ArrayList<Lapang>();
 
@@ -302,19 +325,22 @@ public class LocationsDB extends SQLiteOpenHelper {
 
 		SQLiteDatabase db = this.getReadableDatabase();
 		Cursor cursor = db.rawQuery(selectQuery, null);
-		
+
 		if (cursor.getCount() >= 1) {
 			cursor.moveToFirst();
 
 			do {
 				Lapang info = new Lapang(
-						
-						cursor.getString(cursor.getColumnIndex(FIELD_CODE_JADWAL)),
-						cursor.getString(cursor.getColumnIndex(FIELD_KATEGORI_JADWAL)),
-						cursor.getString(cursor.getColumnIndex(FIELD_TANGGAL_JADWAL)),
-						cursor.getString(cursor.getColumnIndex(FIELD_JAM_JADWAL)),
-						cursor.getString(cursor.getColumnIndex(FIELD_STATUS_JADWAL))
-						);
+
+				cursor.getString(cursor.getColumnIndex(FIELD_CODE_JADWAL)),
+						cursor.getString(cursor
+								.getColumnIndex(FIELD_KATEGORI_JADWAL)),
+						cursor.getString(cursor
+								.getColumnIndex(FIELD_TANGGAL_JADWAL)),
+						cursor.getString(cursor
+								.getColumnIndex(FIELD_JAM_JADWAL)),
+						cursor.getString(cursor
+								.getColumnIndex(FIELD_STATUS_JADWAL)));
 				jadwal.add(info);
 
 			} while (cursor.moveToNext());

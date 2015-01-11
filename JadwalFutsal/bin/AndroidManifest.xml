@@ -18,10 +18,9 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="id.facworks.jadwalfutsal.LoginActivity"
+            android:name="id.facworks.jadwalfutsal.SplashActivity2"
             android:label="@string/app_name"
-            android:theme="@android:style/Theme.Holo.Light.NoActionBar"
-            android:windowSoftInputMode="adjustResize|stateHidden" >
+            android:theme="@android:style/Theme.Holo.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -33,6 +32,11 @@
         <activity
             android:name="id.facworks.jadwalfutsal.MainActivity"
             android:label="@string/app_name_2" >
+        </activity>
+        <activity
+            android:name="id.facworks.jadwalfutsal.MainActivity2"
+            android:label="@string/app_name_2"
+       >
         </activity>
 
         <provider
@@ -56,6 +60,32 @@
         </activity>
         <activity
             android:name="id.facworks.jadwalfutsal.SplashActivity"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
+        </activity>
+        <activity
+            android:name="id.facworks.jadwalfutsal.HomeActivity"
+            android:theme="@style/MyTheme" >
+        </activity>
+        <activity
+            android:name="id.facworks.jadwalfutsal.HomeActivity2"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
+        </activity>
+        <activity
+            android:name="id.facworks.jadwalfutsal.LoginActivity"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar"
+            android:windowSoftInputMode="adjustResize|stateHidden" >
+        </activity>
+        <!-- tab -->
+        <activity
+            android:name="id.facworks.jadwalfutsal.TentangActivity"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
+        </activity>
+        <activity
+            android:name="id.facworks.jadwalfutsal.KontakActivity"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
+        </activity>
+        <activity
+            android:name="id.facworks.jadwalfutsal.JadwalLapangActivity"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar" >
         </activity>
     </application>

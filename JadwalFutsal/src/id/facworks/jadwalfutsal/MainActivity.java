@@ -6,6 +6,7 @@ import id.facworks.jadwalfutsal.db.DatabaseHelper;
 import id.facworks.jadwalfutsal.db.LocationsDB;
 import id.facworks.jadwalfutsal.json.LapangJSON;
 import id.facworks.jadwalfutsal.object.Lapang;
+import id.facworks.jadwalfutsal.view.HintAdapter;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -66,7 +67,7 @@ public class MainActivity extends Activity implements
 	ArrayList<Lapang> daftarJadwal = new ArrayList<Lapang>();
 	String id, tanggal, jam, status;
 
-	private Spinner bank, jenis;
+	private Spinner bank, jenis, jammulai, jamakhir;
 	private EditText tanggalnya, code_booking;
 	private SubmitTask task_submit;
 
@@ -151,7 +152,9 @@ public class MainActivity extends Activity implements
 			editor.commit();
 
 			finish();
-			startActivity(new Intent(MainActivity.this, LoginActivity.class));
+			startActivity(new Intent(MainActivity.this, HomeActivity.class));
+			overridePendingTransition(R.anim.right_slide_in,
+					R.anim.right_slide_out);
 			return true;
 
 		}
@@ -246,14 +249,12 @@ public class MainActivity extends Activity implements
 		if (event.getName().toLowerCase() == "isi") {
 			Toast.makeText(this, "Sudah ada yang Booking!", Toast.LENGTH_SHORT)
 					.show();
+		} else if (event.getName().toLowerCase() == "kosong") {
+			Toast.makeText(this, "Kosong !", Toast.LENGTH_SHORT).show();
+
+		} else {
+			bookingdialog();
 		}
-		else if (event.getName().toLowerCase() == "kosong") {
-			Toast.makeText(this, "Kosong !", Toast.LENGTH_SHORT)
-					.show();
-		}
-//		} else {
-//			bookingdialog();
-//		}
 	}
 
 	@Override
@@ -302,11 +303,13 @@ public class MainActivity extends Activity implements
 		// TODO Auto-generated method stub
 		final Dialog dialog = new Dialog(this);
 		dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-		dialog.setContentView(R.layout.dialog_booking);
+		dialog.setContentView(R.layout.layout_dialog_booking);
 		dialog.setTitle("Booking");
 
 		bank = (Spinner) dialog.findViewById(R.id.rekening);
 		jenis = (Spinner) dialog.findViewById(R.id.jenisbooking);
+		jammulai = (Spinner) dialog.findViewById(R.id.jam_mulai);
+		jamakhir = (Spinner) dialog.findViewById(R.id.jam_akhir);
 
 		tanggalnya = (EditText) dialog.findViewById(R.id.tanggal);
 
@@ -382,12 +385,19 @@ public class MainActivity extends Activity implements
 		// Spinner Drop down elements
 		List<String> lables = db.getAllLabels();
 		List<String> jenis_booking = db.getAllJenis();
+		List<String> jam_mulai = db.getAllJam();
+		List<String> jam_akhir = db.getAllJam();
 
 		// Creating adapter for spinner
+
 		ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_spinner_item, lables);
 		ArrayAdapter<String> jenisAdapter = new ArrayAdapter<String>(this,
 				android.R.layout.simple_spinner_item, jenis_booking);
+		HintAdapter jam_mulai_Adapter = new HintAdapter(
+				getApplicationContext(), jam_mulai, R.layout.spinner_item);
+		HintAdapter jam_akhir_Adapter = new HintAdapter(
+				getApplicationContext(), jam_akhir, R.layout.spinner_item);
 
 		// Drop down layout style - list view with radio button
 		dataAdapter
@@ -395,9 +405,21 @@ public class MainActivity extends Activity implements
 		jenisAdapter
 				.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+		jam_mulai_Adapter.setDropDownViewResource(R.layout.spinner_dropdown);
+		jam_mulai_Adapter.add("Jam Mulai");
+
+		jam_akhir_Adapter.setDropDownViewResource(R.layout.spinner_dropdown);
+		jam_akhir_Adapter.add("Jam Akhir");
+
 		// attaching data adapter to spinner
 		bank.setAdapter(dataAdapter);
 		jenis.setAdapter(jenisAdapter);
+
+		jammulai.setAdapter(jam_mulai_Adapter);
+		jammulai.setSelection(jam_mulai_Adapter.getCount());
+
+		jamakhir.setAdapter(jam_akhir_Adapter);
+		jamakhir.setSelection(jam_akhir_Adapter.getCount());
 	}
 
 	private int getRandomNumber() {
@@ -425,7 +447,7 @@ public class MainActivity extends Activity implements
 
 		values[0] = code_booking.getText().toString().trim();
 		values[1] = tanggalnya.getText().toString();
-
+		values[2] = jammulai.getSelectedItem().toString();
 		return values;
 	}
 
@@ -446,7 +468,7 @@ public class MainActivity extends Activity implements
 			try {
 				WebApi api = WebApi.getInstance();
 				return api.submit_lapang(getApplicationContext(), "1",
-						values[0], "1", values[1], "03:00:00", "isi");
+						values[0], "1", values[1], values[2] + ":00", "isi");
 			} catch (Exception e) {
 				e.printStackTrace();
 				return e.getMessage();

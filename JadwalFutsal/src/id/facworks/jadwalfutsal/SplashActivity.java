@@ -49,6 +49,9 @@ public class SplashActivity extends Activity {
 				} catch (InterruptedException e) {
 					// do nothing
 				} finally {
+					
+					
+					
 					finish();
 					Intent newIntent = new Intent(SplashActivity.this,
 							MainActivity.class);

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/SplashLayout"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#f5f0eb"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <ImageView
+        android:id="@+id/splashimg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_rfa" />
+
+    <TextView
+        android:id="@+id/profil_rfa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/profil" />
+
+    <Button
+        android:id="@+id/jadwal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_form"
+        android:layout_marginRight="@dimen/margin_form"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/button_style_yellow"
+        android:gravity="center"
+        android:text="@string/action_jadwal"
+        android:textColor="#fff" />
+
+</LinearLayout>

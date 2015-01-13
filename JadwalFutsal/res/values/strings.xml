@@ -81,12 +81,19 @@
     <string name="bantuan">Bantuan</string>
     <string name="bantuan1">Apa itu RFA?</string>
     <string name="bantuan2">RFA merupakan sebuah tempat futsal di daerah Rancaekek, Bandung.</string>
-    <string name="bantuan3">Cara memesan?</string> 
-    <string name="bantuan4">	
-    a. Daftar akun
-	\nb. Login
-	\nc. Pilih jadwal
-	\nd. Transfer ke rekening yang disediakan
-	\ne. Tunggu konfirmasi
-	\nf. Selesai dan dapat jadwal</string>
+    <string name="bantuan3">Cara memesan?</string>
+    <string name="bantuan4">    a.Daftar akun
+	\nb.Login
+	\nc.Pilih jadwal
+	\nd.Transfer ke rekening yang disediakan
+	\ne.Tunggu konfirmasi
+	\nf.Selesai dan dapat jadwal</string>
+
+    <!-- lapang array -->
+    <string-array name="nama_lapang">
+        <item>Lapang</item>
+        <item>Lapang-1</item>
+        <item>Lapang-2</item>
+    </string-array>
+
 </resources>

@@ -1,10 +1,13 @@
 package id.facworks.jadwalfutsal;
 
+import id.facworks.jadwalfutsal.db.Constants.Extra;
 import android.app.TabActivity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.view.Menu;
+import android.preference.PreferenceManager;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TabHost;
@@ -14,8 +17,8 @@ import android.widget.TextView;
 //import android.content.res.Resources;
 
 public class HomeActivity extends TabActivity {
-	private static final String TAB_1 = "tab1";
-	private static final String TAB_2 = "tab2";
+//	private static final String TAB_1 = "tab1";
+//	private static final String TAB_2 = "tab2";
 
 	private TabHost tabHost;
 
@@ -67,6 +70,7 @@ public class HomeActivity extends TabActivity {
 
 		tabHost.addTab(spec);
 
+		tabHost.setCurrentTab(1);
 		tabHost.getTabWidget().getChildAt(0).getLayoutParams().height = 80;
 		tabHost.getTabWidget().getChildAt(1).getLayoutParams().height = 80;
 		tabHost.getTabWidget().getChildAt(2).getLayoutParams().height = 80;
@@ -80,7 +84,7 @@ public class HomeActivity extends TabActivity {
 
 			public void onTabChanged(String tabId) {
 
-				invalidateOptionsMenu();
+				//invalidateOptionsMenu();
 
 				for (int i = 0; i < tabHost.getTabWidget().getChildCount(); i++) {
 
@@ -94,20 +98,22 @@ public class HomeActivity extends TabActivity {
 
 			}
 		});
-		tabHost.setCurrentTabByTag(TAB_1);
+		//tabHost.setCurrentTabByTag(TAB_1);
 
 	}
 
-	public boolean onCreateOptionsMenu(Menu menu) {
-		final String currentTab = tabHost.getCurrentTabTag();
-
-		if (TAB_1.equals(currentTab)) {
-			getMenuInflater().inflate(R.menu.main, menu);
-		} else if (TAB_2.equals(currentTab)) {
-			getMenuInflater().inflate(R.menu.main2, menu);
-		}
-		return true;
-	}
+//	public boolean onCreateOptionsMenu(Menu menu) {
+//		
+//
+//		final String currentTab = tabHost.getCurrentTabTag();
+//
+//		if (TAB_1.equals(currentTab)) {
+//			getMenuInflater().inflate(R.menu.main, menu);
+//		} else if (TAB_2.equals(currentTab)) {
+//			getMenuInflater().inflate(R.menu.main2, menu);
+//		}
+//		return true;
+//	}
 
 	private class Tampilan extends LinearLayout {
 
@@ -129,6 +135,23 @@ public class HomeActivity extends TabActivity {
 
 		}
 
+	}
+
+	@Override
+	protected void onResume() {
+		Log.d("JadwalFutsal", "resume login");
+
+		SharedPreferences prefs = PreferenceManager
+				.getDefaultSharedPreferences(getApplicationContext());
+		if ((prefs.contains(Extra.LOGIN_USER_ID_KEY))
+				&& (!prefs.getString(Extra.LOGIN_USER_ID_KEY, "").equals(""))) {
+			// startActivity(new Intent(LoginActivity.this,
+			// TableActivity.class));
+			// startActivity(new Intent(LoginActivity.this,
+			// SplashActivity.class));
+			// finish();
+		}
+		super.onResume();
 	}
 
 }

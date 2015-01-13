@@ -163,20 +163,23 @@ public class LoginActivity extends Activity {
 				});
 	}
 
-	// @Override
-	// protected void onResume() {
-	// Log.d("JadwalFutsal", "resume login");
-	//
-	// SharedPreferences prefs = PreferenceManager
-	// .getDefaultSharedPreferences(getApplicationContext());
-	// if ((prefs.contains(Extra.LOGIN_USER_ID_KEY))
-	// && (!prefs.getString(Extra.LOGIN_USER_ID_KEY, "").equals(""))) {
-	// //startActivity(new Intent(LoginActivity.this, TableActivity.class));
-	// startActivity(new Intent(LoginActivity.this, SplashActivity.class));
-	// finish();
-	// }
-	// super.onResume();
-	// }
+	@Override
+	protected void onResume() {
+		Log.d("JadwalFutsal", "resume login");
+
+		SharedPreferences prefs = PreferenceManager
+				.getDefaultSharedPreferences(getApplicationContext());
+		if ((prefs.contains(Extra.LOGIN_USER_ID_KEY))
+				&& (!prefs.getString(Extra.LOGIN_USER_ID_KEY, "").equals(""))) {
+			// startActivity(new Intent(LoginActivity.this,
+			// TableActivity.class));
+			startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+			finish();
+			overridePendingTransition(R.anim.right_slide_in,
+					R.anim.right_slide_out);
+		}
+		super.onResume();
+	}
 
 	/**
 	 * Attempts to sign in or register the account specified by the login form.
@@ -368,7 +371,9 @@ public class LoginActivity extends Activity {
 					// startActivity(new Intent(LoginActivity.this,
 					// TableActivity.class));
 					startActivity(new Intent(LoginActivity.this,
-							SplashActivity.class));
+							HomeActivity.class));
+					overridePendingTransition(R.anim.right_slide_in,
+							R.anim.right_slide_out);
 
 				} else {
 					Toast.makeText(getApplicationContext(), result,
@@ -446,12 +451,11 @@ public class LoginActivity extends Activity {
 			showProgress(false);
 		}
 	}
-	
+
 	public void onBackPressed() {
 		super.onBackPressed();
 		finish();
-		Intent newIntent = new Intent(LoginActivity.this,
-				HomeActivity.class);
+		Intent newIntent = new Intent(LoginActivity.this, HomeActivity.class);
 		startActivity(newIntent);
 		overridePendingTransition(R.anim.right_slide_in, R.anim.right_slide_out);
 	}

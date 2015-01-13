@@ -297,8 +297,8 @@ public class LocationsDB extends SQLiteOpenHelper {
 		return jenis;
 	}
 
-	public List<String> getAllJam() {
-		List<String> jam = new ArrayList<String>();
+	public ArrayList<String> getAllJam() {
+		ArrayList<String> jam = new ArrayList<String>();
 
 		String selectQuery = "SELECT  * FROM " + DATABASE_TABLE_JAM;
 
@@ -317,11 +317,49 @@ public class LocationsDB extends SQLiteOpenHelper {
 		return jam;
 	}
 
-	public List<Lapang> getAllLapang() {
-		List<Lapang> jadwal = new ArrayList<Lapang>();
+	public ArrayList<Lapang> getAllLapang1() {
+		ArrayList<Lapang> jadwal = new ArrayList<Lapang>();
 
 		// Select All Query
-		String selectQuery = "SELECT  * FROM " + DATABASE_TABLE_JADWAL;
+		String selectQuery = "SELECT  * FROM " + DATABASE_TABLE_JADWAL
+				+ " where " + FIELD_KATEGORI_JADWAL + " like 1";
+
+		SQLiteDatabase db = this.getReadableDatabase();
+		Cursor cursor = db.rawQuery(selectQuery, null);
+
+		if (cursor.getCount() >= 1) {
+			cursor.moveToFirst();
+
+			do {
+				Lapang info = new Lapang(
+
+				cursor.getString(cursor.getColumnIndex(FIELD_CODE_JADWAL)),
+						cursor.getString(cursor
+								.getColumnIndex(FIELD_KATEGORI_JADWAL)),
+						cursor.getString(cursor
+								.getColumnIndex(FIELD_TANGGAL_JADWAL)),
+						cursor.getString(cursor
+								.getColumnIndex(FIELD_JAM_JADWAL)),
+						cursor.getString(cursor
+								.getColumnIndex(FIELD_STATUS_JADWAL)));
+				jadwal.add(info);
+
+			} while (cursor.moveToNext());
+		}
+		// closing connection
+		cursor.close();
+		db.close();
+
+		// returning lables
+		return jadwal;
+	}
+
+	public ArrayList<Lapang> getAllLapang2() {
+		ArrayList<Lapang> jadwal = new ArrayList<Lapang>();
+
+		// Select All Query
+		String selectQuery = "SELECT  * FROM " + DATABASE_TABLE_JADWAL
+				+ " where " + FIELD_KATEGORI_JADWAL + " like 2";
 
 		SQLiteDatabase db = this.getReadableDatabase();
 		Cursor cursor = db.rawQuery(selectQuery, null);

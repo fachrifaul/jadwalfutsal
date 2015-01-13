@@ -20,6 +20,11 @@ public final class R {
         public static final int right_slide_in=0x7f040008;
         public static final int right_slide_out=0x7f040009;
     }
+    public static final class array {
+        /**  lapang array 
+         */
+        public static final int nama_lapang=0x7f0c0000;
+    }
     public static final class attr {
         /**  Custom divider drawable to use for elements in the action bar. 
          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
@@ -1029,20 +1034,24 @@ containing a value of this type.
         public static final int abc_split_action_bar_is_narrow=0x7f050002;
     }
     public static final class color {
-        public static final int abc_search_url_text_holo=0x7f06000f;
+        public static final int abc_search_url_text_holo=0x7f060013;
         public static final int abc_search_url_text_normal=0x7f060000;
         public static final int abc_search_url_text_pressed=0x7f060002;
         public static final int abc_search_url_text_selected=0x7f060001;
-        public static final int actionbar_bg_color=0x7f06000e;
+        public static final int actionbar_bg_color=0x7f060012;
         public static final int bg_dialog=0x7f060005;
-        public static final int event_color_01=0x7f060009;
-        public static final int event_color_02=0x7f06000a;
-        public static final int event_color_03=0x7f06000b;
-        public static final int event_color_04=0x7f06000c;
+        public static final int biru_member=0x7f060009;
+        public static final int event_color_01=0x7f06000d;
+        public static final int event_color_02=0x7f06000e;
+        public static final int event_color_03=0x7f06000f;
+        public static final int event_color_04=0x7f060010;
         public static final int grey=0x7f060006;
+        public static final int hijau_teuing=0x7f06000c;
+        public static final int kuning_biasa=0x7f06000a;
+        public static final int merah_lawan=0x7f06000b;
         public static final int shadow_end=0x7f060004;
         public static final int shadow_start=0x7f060003;
-        public static final int ungu=0x7f06000d;
+        public static final int ungu=0x7f060011;
         public static final int warna_isi_biasa=0x7f060008;
         public static final int warna_kosong=0x7f060007;
     }
@@ -1273,7 +1282,7 @@ containing a value of this type.
         public static final int tw=0x7f02007e;
     }
     public static final class id {
-        public static final int KodeBoooking=0x7f09007d;
+        public static final int KodeBoooking=0x7f090076;
         public static final int SplashLayout=0x7f090049;
         public static final int action_bar=0x7f090028;
         public static final int action_bar_activity_content=0x7f090001;
@@ -1286,22 +1295,22 @@ containing a value of this type.
         public static final int action_menu_divider=0x7f090002;
         public static final int action_menu_presenter=0x7f090003;
         public static final int action_mode_close_button=0x7f090030;
-        public static final int action_today=0x7f090098;
+        public static final int action_today=0x7f090099;
         public static final int activity_chooser_view_content=0x7f090031;
         public static final int alamat=0x7f09005b;
-        public static final int alternativeDateSelectButton=0x7f09008a;
+        public static final int alternativeDateSelectButton=0x7f09008b;
         public static final int always=0x7f090012;
         public static final int bantuan=0x7f090069;
         public static final int beginning=0x7f090019;
-        public static final int cancel=0x7f090073;
+        public static final int cancel=0x7f090077;
         public static final int cancel_button=0x7f090064;
         public static final int cancel_dong_button=0x7f090067;
         public static final int checkbox=0x7f09003a;
         public static final int collapseActionView=0x7f090013;
-        public static final int customDateSelectButton=0x7f09008b;
-        public static final int dateTimeSelectButton=0x7f09008f;
-        public static final int defaultDateLimitSelectButton=0x7f090089;
-        public static final int defaultDateSelectButton=0x7f090088;
+        public static final int customDateSelectButton=0x7f09008c;
+        public static final int dateTimeSelectButton=0x7f090090;
+        public static final int defaultDateLimitSelectButton=0x7f09008a;
+        public static final int defaultDateSelectButton=0x7f090089;
         public static final int default_activity_button=0x7f090034;
         public static final int dialog=0x7f090017;
         public static final int disableHome=0x7f09000c;
@@ -1311,31 +1320,32 @@ containing a value of this type.
         public static final int end=0x7f09001a;
         public static final int expand_activities_button=0x7f090032;
         public static final int expanded_menu=0x7f090039;
-        public static final int fb=0x7f090080;
-        public static final int first=0x7f09007e;
+        public static final int fb=0x7f090081;
+        public static final int first=0x7f09007f;
         public static final int forgot=0x7f090055;
         public static final int forgot_form=0x7f090061;
         public static final int forgot_status=0x7f09005f;
         public static final int forgot_status_message=0x7f090060;
         public static final int friday=0x7f09001d;
-        public static final int header_text=0x7f090096;
-        public static final int hello=0x7f09006e;
+        public static final int header_text=0x7f090097;
+        public static final int hello=0x7f09007a;
         public static final int home=0x7f090000;
         public static final int homeAsUp=0x7f09000d;
         public static final int icon=0x7f090037;
         public static final int ifRoom=0x7f090014;
         public static final int image=0x7f090033;
         public static final int image2=0x7f090035;
-        public static final int item_exit=0x7f09009a;
-        public static final int item_profile=0x7f090099;
+        public static final int item_exit=0x7f09009b;
+        public static final int item_profile=0x7f09009a;
         public static final int jadwal=0x7f09004c;
-        public static final int jam_akhir=0x7f09007c;
-        public static final int jam_mulai=0x7f09007b;
-        public static final int jenisbooking=0x7f090079;
-        public static final int jumlah_transfer=0x7f090078;
+        public static final int jam_akhir=0x7f090071;
+        public static final int jam_mulai=0x7f090070;
+        public static final int jenisbooking=0x7f090075;
+        public static final int jumlah_transfer=0x7f090074;
+        public static final int lapang=0x7f09006e;
         public static final int length_long=0x7f090024;
         public static final int length_short=0x7f090025;
-        public static final int lin_hello=0x7f09006d;
+        public static final int lin_hello=0x7f090079;
         public static final int listMode=0x7f090009;
         public static final int list_item=0x7f090036;
         public static final int login=0x7f090052;
@@ -1345,8 +1355,8 @@ containing a value of this type.
         public static final int login_status_message=0x7f09004e;
         public static final int middle=0x7f09001b;
         public static final int monday=0x7f09001e;
-        public static final int monthYearDateSelectButton=0x7f09008c;
-        public static final int nama=0x7f090075;
+        public static final int monthYearDateSelectButton=0x7f09008d;
+        public static final int nama=0x7f09006f;
         public static final int namama=0x7f090057;
         public static final int name=0x7f090058;
         public static final int never=0x7f090015;
@@ -1354,7 +1364,7 @@ containing a value of this type.
         public static final int none=0x7f09001c;
         public static final int normal=0x7f09000a;
         public static final int password=0x7f090051;
-        public static final int pick_tanggal=0x7f090077;
+        public static final int pick_tanggal=0x7f090073;
         public static final int profil_rfa=0x7f09004b;
         public static final int progressBar1=0x7f09005e;
         public static final int progress_circular=0x7f090004;
@@ -1362,10 +1372,10 @@ containing a value of this type.
         public static final int radio=0x7f09003c;
         public static final int register=0x7f090054;
         public static final int register_button=0x7f090059;
-        public static final int rekening=0x7f090074;
-        public static final int rel_nah_hide=0x7f09006f;
+        public static final int rekening=0x7f09006d;
+        public static final int rel_nah_hide=0x7f09007b;
         public static final int reset_button=0x7f090063;
-        public static final int row=0x7f090097;
+        public static final int row=0x7f090098;
         public static final int saturday=0x7f09001f;
         public static final int search_badge=0x7f09003f;
         public static final int search_bar=0x7f09003e;
@@ -1377,8 +1387,8 @@ containing a value of this type.
         public static final int search_plate=0x7f090043;
         public static final int search_src_text=0x7f090044;
         public static final int search_voice_btn=0x7f090048;
-        public static final int second=0x7f09007f;
-        public static final int selectedDateLabel=0x7f090090;
+        public static final int second=0x7f090080;
+        public static final int selectedDateLabel=0x7f090091;
         public static final int shortcut=0x7f09003b;
         public static final int showCustom=0x7f09000e;
         public static final int showHome=0x7f09000f;
@@ -1386,47 +1396,47 @@ containing a value of this type.
         public static final int sign_in_button=0x7f090053;
         public static final int splashimg=0x7f09004a;
         public static final int split_action_bar=0x7f09002a;
-        public static final int submit=0x7f09007a;
+        public static final int submit=0x7f090078;
         public static final int submit_area=0x7f090046;
         public static final int sunday=0x7f090020;
         public static final int tabMode=0x7f09000b;
-        public static final int table=0x7f090091;
+        public static final int table=0x7f090092;
         public static final int tag_column=0x7f090008;
         public static final int tag_row=0x7f090007;
         public static final int tag_type_view=0x7f090006;
-        public static final int tanggal=0x7f090076;
+        public static final int tanggal=0x7f090072;
         public static final int text1=0x7f090068;
         public static final int text2=0x7f09006a;
         public static final int text3=0x7f09006b;
         public static final int text4=0x7f09006c;
-        public static final int text5=0x7f090083;
-        public static final int text6=0x7f090084;
-        public static final int text7=0x7f090085;
-        public static final int text8=0x7f090086;
-        public static final int text9=0x7f090087;
+        public static final int text5=0x7f090084;
+        public static final int text6=0x7f090085;
+        public static final int text7=0x7f090086;
+        public static final int text8=0x7f090087;
+        public static final int text9=0x7f090088;
         public static final int textSplash=0x7f09005d;
         public static final int textView1=0x7f090065;
         public static final int thursday=0x7f090021;
-        public static final int timeLimitSelectButton=0x7f09008e;
-        public static final int timeSelectButton=0x7f09008d;
+        public static final int timeLimitSelectButton=0x7f09008f;
+        public static final int timeSelectButton=0x7f09008e;
         public static final int title=0x7f090038;
         public static final int top_action_bar=0x7f09002c;
         public static final int tuesday=0x7f090022;
-        public static final int tw=0x7f090081;
-        public static final int txt_nah_hide1=0x7f090070;
-        public static final int txt_nah_hide2=0x7f090071;
-        public static final int txt_nah_hide3=0x7f090072;
+        public static final int tw=0x7f090082;
+        public static final int txt_nah_hide1=0x7f09007c;
+        public static final int txt_nah_hide2=0x7f09007d;
+        public static final int txt_nah_hide3=0x7f09007e;
         public static final int up=0x7f09002d;
         public static final int useLogo=0x7f090011;
         public static final int username=0x7f090050;
         public static final int usernameEmail=0x7f090062;
-        public static final int view_expandable_contentLayout=0x7f090095;
-        public static final int view_expandable_headerlayout=0x7f090094;
+        public static final int view_expandable_contentLayout=0x7f090096;
+        public static final int view_expandable_headerlayout=0x7f090095;
         public static final int wednesday=0x7f090023;
         public static final int weekView=0x7f090056;
-        public static final int weekViewLapang1=0x7f090092;
-        public static final int weekViewLapang2=0x7f090093;
-        public static final int welcome=0x7f090082;
+        public static final int weekViewLapang1=0x7f090093;
+        public static final int weekViewLapang2=0x7f090094;
+        public static final int welcome=0x7f090083;
         public static final int withText=0x7f090016;
     }
     public static final class integer {
@@ -1491,9 +1501,9 @@ containing a value of this type.
         public static final int item_table_header=0x7f030021;
         public static final int item_table_header_first=0x7f030022;
         public static final int layout_bantuan=0x7f030023;
-        public static final int layout_contoh=0x7f030024;
-        public static final int layout_dialog=0x7f030025;
-        public static final int layout_dialog_booking=0x7f030026;
+        public static final int layout_booking=0x7f030024;
+        public static final int layout_contoh=0x7f030025;
+        public static final int layout_dialog=0x7f030026;
         public static final int layout_jadwal_lapang=0x7f030027;
         public static final int layout_kontak=0x7f030028;
         public static final int layout_tentang=0x7f030029;
@@ -1511,9 +1521,9 @@ containing a value of this type.
         public static final int view_row=0x7f030035;
     }
     public static final class menu {
-        public static final int main=0x7f0c0000;
-        public static final int main2=0x7f0c0001;
-        public static final int menu_table=0x7f0c0002;
+        public static final int main=0x7f0d0000;
+        public static final int main2=0x7f0d0001;
+        public static final int menu_table=0x7f0d0002;
     }
     public static final class string {
         /**  Content description for the action bar "home" affordance. [CHAR LIMIT=NONE] 

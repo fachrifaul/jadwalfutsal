@@ -326,7 +326,7 @@ public class RegisterActivity extends Activity implements OnClickListener {
 //					startActivity(new Intent(RegisterActivity.this,
 //							TableActivity.class));
 					startActivity(new Intent(RegisterActivity.this,
-							SplashActivity.class));
+							HomeActivity.class));
 					finish();
 					// }
 					// });

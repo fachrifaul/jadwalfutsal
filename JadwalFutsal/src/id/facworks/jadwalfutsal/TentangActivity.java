@@ -37,5 +37,7 @@ public class TentangActivity extends Activity {
 		text9.setTypeface(face);
 
 	}
+	
+	
 
 }

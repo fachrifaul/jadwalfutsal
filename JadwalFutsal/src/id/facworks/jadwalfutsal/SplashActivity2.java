@@ -53,10 +53,15 @@ public class SplashActivity2 extends Activity {
 					// do nothing
 				} finally {
 
+					SharedPreferences prefs = PreferenceManager
+							.getDefaultSharedPreferences(getApplicationContext());
+					if ((prefs.contains(Extra.LOGIN_USER_ID_KEY))
+							&& (!prefs.getString(Extra.LOGIN_USER_ID_KEY, "")
+									.equals(""))) {
+					}
 					finish();
-					Intent newIntent = new Intent(SplashActivity2.this,
-							HomeActivity.class);
-					startActivity(newIntent);
+					startActivity(new Intent(SplashActivity2.this,
+							HomeActivity.class));
 				}
 			}
 		};
@@ -86,20 +91,20 @@ public class SplashActivity2 extends Activity {
 		}
 
 	}
-
-	@Override
-	protected void onResume() {
-		Log.d("JadwalFutsal", "resume login");
-
-		SharedPreferences prefs = PreferenceManager
-				.getDefaultSharedPreferences(getApplicationContext());
-		if ((prefs.contains(Extra.LOGIN_USER_ID_KEY))
-				&& (!prefs.getString(Extra.LOGIN_USER_ID_KEY, "").equals(""))) {
-			// startActivity(new Intent(LoginActivity.this,
-			// TableActivity.class));
-			startActivity(new Intent(SplashActivity2.this, SplashActivity.class));
-			finish();
-		}
-		super.onResume();
-	}
+	//
+	// @Override
+	// protected void onResume() {
+	// Log.d("JadwalFutsal", "resume login");
+	//
+	// SharedPreferences prefs = PreferenceManager
+	// .getDefaultSharedPreferences(getApplicationContext());
+	// if ((prefs.contains(Extra.LOGIN_USER_ID_KEY))
+	// && (!prefs.getString(Extra.LOGIN_USER_ID_KEY, "").equals(""))) {
+	// // startActivity(new Intent(LoginActivity.this,
+	// // TableActivity.class));
+	// startActivity(new Intent(SplashActivity2.this, HomeActivity.class));
+	// finish();
+	// }
+	// super.onResume();
+	// }
 }

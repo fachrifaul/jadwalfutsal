@@ -3,5 +3,6 @@
     android:id="@android:id/text1"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:paddingLeft="@dimen/margin_dialog"
     android:textColor="@color/actionbar_bg_color"
     android:textSize="16sp" />

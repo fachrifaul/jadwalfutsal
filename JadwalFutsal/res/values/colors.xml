@@ -8,6 +8,12 @@
     <color name="warna_kosong">#80A6CD</color>
     <color name="warna_isi_biasa">#EDCA54</color>
     
+    <color name="biru_member">#2172AA</color>
+    <color name="kuning_biasa">#C7941F</color>
+    <color name="merah_lawan">#BD493C</color>
+    <color name="hijau_teuing">#179D54</color>
+    
+    
     <color name="event_color_01">#59dbe0</color>
     <color name="event_color_02">#f57f68</color>
     <color name="event_color_03">#87d288</color>

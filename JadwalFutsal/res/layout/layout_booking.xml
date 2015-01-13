@@ -19,15 +19,9 @@
             android:layout_height="fill_parent"
             android:orientation="vertical" >
 
-            <ImageView
-                android:id="@+id/cancel"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_gravity="right"
-                android:src="@drawable/ic_cancel" />
-
             <TextView
                 android:id="@+id/textView1"
+                android:gravity="center"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/margin_dialog"
@@ -48,6 +42,14 @@
                 android:layout_marginBottom="5dp"
                 android:layout_marginTop="5dp"
                 android:hint="@string/dialog_status" />
+
+            <Spinner
+                android:id="@+id/lapang"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="5dp"
+                android:hint="@string/lapang" />
 
             <EditText
                 android:id="@+id/nama"
@@ -134,13 +136,20 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:layout_marginTop="@dimen/margin_dialog"
-            android:orientation="vertical" >
+            android:orientation="horizontal" >
+
+            <Button
+                android:id="@+id/cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="50"
+                android:text="@string/dialog_cancel" />
 
             <Button
                 android:id="@+id/submit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:layout_weight="50"
                 android:text="@string/dialog_sumit" />
         </LinearLayout>
     </LinearLayout>

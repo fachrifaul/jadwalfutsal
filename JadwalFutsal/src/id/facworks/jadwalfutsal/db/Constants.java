@@ -38,6 +38,8 @@ public final class Constants {
 	public static final String LAPANG_URL = SERVER_BASE_URL + "lapang.php";
 	public static final String JADWAL_LAPANG_URL = SERVER_BASE_URL + "jadwallapang.php";
 	public static final String BOOKING_LAPANG_URL = SERVER_BASE_URL + "booking_lapang.php";
+	public static final String USER_LAPANG_URL = SERVER_BASE_URL + "getuser.php?tag=";
+	
 	
 	
 //	public static final String BARANG_COVER = SERVER_BASE_URL + "webs/images/";
@@ -60,6 +62,7 @@ public final class Constants {
 	public static final String USER_ID_PARAM 		= "user_id";
 	public static final String UID_PARAM 			= "uid";
 	public static final String EMAIL_PARAM 			= "email";
+	public static final String NOHP_PARAM 			= "nohp";
 	
 	public static final String ID_LAPANG	 		= "lid";
 	public static final String KATEGORI_LAPANG 		= "kategori_lapang";
@@ -68,3 +71,4 @@ public final class Constants {
 	public static final String STATUS_lAPANG 		= "status";
 	
 }
+

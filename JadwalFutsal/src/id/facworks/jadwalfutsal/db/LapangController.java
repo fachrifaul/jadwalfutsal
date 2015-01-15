@@ -22,7 +22,7 @@ public class LapangController {
 	 * Inisialisasi parameter yang ada di database disini contoh: String id =
 	 * "id"; String idSync = "idSync";
 	 */
-	private String lid = "lid";
+	private String user_id = "id_user";
 	private String code_booking = "code_booking";
 	private String kategori_lapang = "kategori_lapang";
 	private String tanggal = "tanggal";
@@ -46,6 +46,7 @@ public class LapangController {
 			// sebelum dimasukkan ke database
 			ContentValues cv = new ContentValues();
 			LapangModel rm = obj;
+			cv.put(user_id, rm.getid_user());
 			cv.put(code_booking, rm.getcode_booking());
 			cv.put(kategori_lapang, rm.getkategori_lapang());
 			cv.put(tanggal, rm.gettanggal());
@@ -71,7 +72,7 @@ public class LapangController {
 			for (int counter = 0; counter < objects.size(); counter++) {
 				ContentValues cv = new ContentValues();
 				LapangModel rm = objects.get(counter);
-				//cv.put(lid, rm.getId());
+				cv.put(user_id, rm.getid_user());
 				cv.put(code_booking, rm.getcode_booking());
 				cv.put(kategori_lapang, rm.getkategori_lapang());
 				cv.put(tanggal, rm.gettanggal());
@@ -98,7 +99,7 @@ public class LapangController {
 			while (c.moveToNext()) {
 				// Disini masukkan object data kedalam list
 				LapangModel rm = new LapangModel();
-				//rm.setId(c.getString(c.getColumnIndex(lid)));
+				rm.setid_user(c.getString(c.getColumnIndex(user_id)));
 				rm.setcode_booking(c.getString(c.getColumnIndex(code_booking)));
 				rm.setkategori_lapang(c.getString(c.getColumnIndex(kategori_lapang)));
 				rm.settanggal(c.getString(c.getColumnIndex(tanggal)));

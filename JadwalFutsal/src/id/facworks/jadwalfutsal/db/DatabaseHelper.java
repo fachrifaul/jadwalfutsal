@@ -15,7 +15,7 @@ public class DatabaseHelper extends SQLiteAssetHelper {
 	private static final int DB_VER = 1;
 
 	private static final String DATABASE_TABLE_JADWAL = "jadwal";
-	//public static final String FIELD_ROW_ID_JADWAL = "lid";
+	public static final String FIELD_ID_JADWAL = "id_user";
 	public static final String FIELD_CODE_JADWAL = "code_booking";
 	public static final String FIELD_KATEGORI_JADWAL = "kategori_lapang";
 	public static final String FIELD_TANGGAL_JADWAL = "tanggal";
@@ -62,6 +62,7 @@ public class DatabaseHelper extends SQLiteAssetHelper {
 			do {
 
 				Lapang kamus = new Lapang(
+						cursor.getString(cursor.getColumnIndex(FIELD_ID_JADWAL)),
 						cursor.getString(cursor
 								.getColumnIndex(FIELD_CODE_JADWAL)),
 						cursor.getString(cursor

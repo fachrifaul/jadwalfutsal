@@ -1,8 +1,10 @@
 package id.facworks.jadwalfutsal;
 
+import id.facworks.jadwalfutsal.conn.WebApi;
 import id.facworks.jadwalfutsal.db.Constants.Extra;
 import id.facworks.jadwalfutsal.db.LocationsDB;
 import id.facworks.jadwalfutsal.object.Lapang;
+import id.facworks.jadwalfutsal.object.User;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,14 +13,14 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.SharedPreferences.Editor;
 import android.graphics.RectF;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.preference.PreferenceManager;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.util.TypedValue;
 import android.view.View;
+import android.widget.TextView;
 
 import com.alamkanak.weekview.WeekView;
 import com.alamkanak.weekview.WeekView.EventClickListener;
@@ -30,21 +32,14 @@ public class JadwalLapangActivity extends Activity {
 	private WeekView mWeekView, mWeekView2;
 	private WeekViewEvent event;
 
-	// private DatabaseHelper dbHelper;
 	private LocationsDB dbHelper_lapang;
-	// ArrayList<Lapang> daftarJadwal = new ArrayList<Lapang>();
 	ArrayList<Lapang> daftarJadwal1 = new ArrayList<Lapang>();
 	ArrayList<Lapang> daftarJadwal2 = new ArrayList<Lapang>();
 	String id, tanggal, jam, status, kategori_lapang, code;
 
-	// private Spinner bank, jenis, jammulai, jamakhir;
-	// private EditText tanggalnya, code_booking;
-	// private SubmitTask task_submit;
-	//
-	// private Random random = new Random();
-	// private static final String _CHAR =
-	// "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
-	// private static final int RANDOM_STR_LENGTH = 7;
+	private static final int TYPE_THREE_DAY_VIEW = 2;
+	private static final int TYPE_WEEK_VIEW = 3;
+	private int mWeekViewType = TYPE_THREE_DAY_VIEW;
 
 	private SharedPreferences prefs;
 
@@ -52,6 +47,12 @@ public class JadwalLapangActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.layout_jadwal_lapang);
+
+		if (android.os.Build.VERSION.SDK_INT > 9) {
+			StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder()
+					.permitAll().build();
+			StrictMode.setThreadPolicy(policy);
+		}
 
 		prefs = PreferenceManager
 				.getDefaultSharedPreferences(getApplicationContext());
@@ -71,7 +72,23 @@ public class JadwalLapangActivity extends Activity {
 				if ((prefs.contains(Extra.LOGIN_USER_ID_KEY))
 						&& (!prefs.getString(Extra.LOGIN_USER_ID_KEY, "")
 								.equals(""))) {
-					bookingdialog();
+
+					// bookingdialog();
+
+					System.out.println("idlawan: " + event.getId());
+					System.out.println("name: " + event.getName());
+					// int siz = daftarJadwal1.size();
+					// for (int i = 0; i < siz; i++) {
+					// code = daftarJadwal1.get(i).getcode_booking();
+					// String[] codenya = code.split("\\-");
+					// if (Integer.parseInt(codenya[1]) == 3) {
+
+					// }else{
+					//
+					// }
+					// }
+					carilawan(String.valueOf(event.getId()));
+
 				} else {
 					logindialog();
 				}
@@ -87,9 +104,7 @@ public class JadwalLapangActivity extends Activity {
 
 				int siz = daftarJadwal1.size();
 				for (int i = 0; i < siz; i++) {
-					// id = daftarJadwal.get(i).getID();
-					// kategori_lapang =
-					// daftarJadwal1.get(i).getkategori_lapang();
+					id = daftarJadwal1.get(i).getuser_id();
 					code = daftarJadwal1.get(i).getcode_booking();
 					status = daftarJadwal1.get(i).getstatus();
 					jam = daftarJadwal1.get(i).getjam();
@@ -100,6 +115,9 @@ public class JadwalLapangActivity extends Activity {
 					String Tanggal[] = tanggal.split("\\-");
 					String Jam[] = jam.split("\\:");
 
+					System.out.println(" id : " + id);
+					System.out.println(" idlong : " + Long.parseLong(id));
+
 					System.out.println(Tanggal[0] + " - " + Tanggal[1] + " - "
 							+ Tanggal[2] + " - ");
 					System.out.println(Jam[0] + " - " + Jam[1] + " - ");
@@ -109,26 +127,18 @@ public class JadwalLapangActivity extends Activity {
 							+ status.toString().toLowerCase());
 
 					if (newMonth == Integer.parseInt(Tanggal[1])) {
-						event = new WeekViewEvent(1, status, Integer
-								.parseInt(Tanggal[0]), Integer
-								.parseInt(Tanggal[1]), Integer
-								.parseInt(Tanggal[2]),
-								Integer.parseInt(Jam[0]), Integer
+						event = new WeekViewEvent(Long.parseLong(id), status,
+								Integer.parseInt(Tanggal[0]), Integer
+										.parseInt(Tanggal[1]), Integer
+										.parseInt(Tanggal[2]), Integer
+										.parseInt(Jam[0]), Integer
 										.parseInt(Jam[1]), Integer
 										.parseInt(Tanggal[0]), Integer
 										.parseInt(Tanggal[1]), Integer
 										.parseInt(Tanggal[2]), Integer
 										.parseInt(Jam[0]) + 1, Integer
 										.parseInt(Jam[1]));
-						// if (status.toString().toLowerCase() == "kosong") {
-						// event.setColor(getResources().getColor(
-						// R.color.warna_isi_biasa));
-						// } else {
-						// event.setColor(getResources().getColor(
-						// R.color.warna_kosong));
-						// }
-						// System.out.println("---------"
-						// + status.toString().toLowerCase());
+
 						if (Integer.parseInt(codenya[1]) == 1) {
 							event.setColor(getResources().getColor(
 									R.color.biru_member));
@@ -164,6 +174,7 @@ public class JadwalLapangActivity extends Activity {
 						&& (!prefs.getString(Extra.LOGIN_USER_ID_KEY, "")
 								.equals(""))) {
 					bookingdialog();
+
 				} else {
 					logindialog();
 				}
@@ -228,45 +239,6 @@ public class JadwalLapangActivity extends Activity {
 	}
 
 	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-
-		getParent().getMenuInflater().inflate(R.menu.main2, menu);
-		return true;
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		int id = item.getItemId();
-		switch (id) {
-
-		case R.id.action_today:
-			mWeekView.goToToday();
-			mWeekView2.goToToday();
-			return true;
-
-		case R.id.item_profile:
-			return true;
-
-		case R.id.item_exit:
-
-			Editor editor = prefs.edit();
-			editor.remove(Extra.LOGIN_USER_ID_KEY);
-			editor.remove(Extra.LOGIN_TOKEN_KEY);
-			editor.commit();
-
-			finish();
-			startActivity(new Intent(getApplicationContext(),
-					HomeActivity.class));
-			overridePendingTransition(R.anim.right_slide_in,
-					R.anim.right_slide_out);
-			return true;
-
-		}
-
-		return super.onOptionsItemSelected(item);
-	}
-
-	@Override
 	protected void onResume() {
 		Log.d("JadwalFutsal", "resume login");
 
@@ -294,8 +266,7 @@ public class JadwalLapangActivity extends Activity {
 						Intent newIntent = new Intent(
 								JadwalLapangActivity.this, LoginActivity.class);
 						startActivity(newIntent);
-						overridePendingTransition(R.anim.right_slide_in,
-								R.anim.right_slide_out);
+						efekdong();
 					}
 				});
 		dialog.findViewById(R.id.cancel_dong_button).setOnClickListener(
@@ -309,10 +280,117 @@ public class JadwalLapangActivity extends Activity {
 		dialog.show();
 	}
 
+	public void efekdong() {
+		overridePendingTransition(R.anim.right_slide_in, R.anim.right_slide_out);
+	}
+
 	private void bookingdialog() {
+
 		finish();
 		startActivity(new Intent(getApplicationContext(), BookingActivity.class));
-		overridePendingTransition(R.anim.right_slide_in, R.anim.right_slide_out);
+		efekdong();
+	}
+
+	public void carilawan(String id_lawan) {
+		final Dialog dialog;
+		dialog = new Dialog(JadwalLapangActivity.this);
+		dialog.setContentView(R.layout.layout_dialog_carilawan);
+		dialog.setTitle("Cari Lawan !");
+
+		TextView nama = (TextView) dialog.findViewById(R.id.textnama);
+		nama.setText("Nama : " + asik(id_lawan).get(0).getuser());
+		TextView nohp = (TextView) dialog.findViewById(R.id.textnohp);
+		nohp.setText("Nohp : " + asik(id_lawan).get(0).getnohp());
+
+		dialog.findViewById(R.id.ok_button).setOnClickListener(
+				new View.OnClickListener() {
+					@Override
+					public void onClick(View view) {
+						dialog.dismiss();
+					}
+				});
+
+		dialog.show();
+	}
+
+	public ArrayList<User> asik(String id_lawan) {
+
+		System.out.println("idlawan: " + id_lawan);
+
+		try {
+			WebApi api = WebApi.getInstance();
+			return api.getUser(id_lawan);
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+		return null;
+	}
+
+	public void goToday() {
+		// TODO Auto-generated method stub
+		System.out.println("yes!");
+		mWeekView.goToToday();
+		mWeekView2.goToToday();
+	}
+
+	public void go3dayview() {
+		if (mWeekViewType != TYPE_THREE_DAY_VIEW) {
+			mWeekViewType = TYPE_THREE_DAY_VIEW;
+			mWeekView.setNumberOfVisibleDays(3);
+			mWeekView2.setNumberOfVisibleDays(3);
+
+			// Lets change some dimensions to best fit the view.
+			mWeekView.setColumnGap((int) TypedValue.applyDimension(
+					TypedValue.COMPLEX_UNIT_DIP, 8, getResources()
+							.getDisplayMetrics()));
+			mWeekView.setTextSize((int) TypedValue.applyDimension(
+					TypedValue.COMPLEX_UNIT_SP, 12, getResources()
+							.getDisplayMetrics()));
+			mWeekView.setEventTextSize((int) TypedValue.applyDimension(
+					TypedValue.COMPLEX_UNIT_SP, 12, getResources()
+							.getDisplayMetrics()));
+
+			mWeekView2.setColumnGap((int) TypedValue.applyDimension(
+					TypedValue.COMPLEX_UNIT_DIP, 8, getResources()
+							.getDisplayMetrics()));
+			mWeekView2.setTextSize((int) TypedValue.applyDimension(
+					TypedValue.COMPLEX_UNIT_SP, 12, getResources()
+							.getDisplayMetrics()));
+			mWeekView2.setEventTextSize((int) TypedValue.applyDimension(
+					TypedValue.COMPLEX_UNIT_SP, 12, getResources()
+							.getDisplayMetrics()));
+		}
+	}
+
+	public void goweekview() {
+		if (mWeekViewType != TYPE_WEEK_VIEW) {
+
+			mWeekViewType = TYPE_WEEK_VIEW;
+			mWeekView.setNumberOfVisibleDays(7);
+			mWeekView2.setNumberOfVisibleDays(7);
+
+			// Lets change some dimensions to best fit the view.
+			mWeekView.setColumnGap((int) TypedValue.applyDimension(
+					TypedValue.COMPLEX_UNIT_DIP, 2, getResources()
+							.getDisplayMetrics()));
+			mWeekView.setTextSize((int) TypedValue.applyDimension(
+					TypedValue.COMPLEX_UNIT_SP, 10, getResources()
+							.getDisplayMetrics()));
+			mWeekView.setEventTextSize((int) TypedValue.applyDimension(
+					TypedValue.COMPLEX_UNIT_SP, 10, getResources()
+							.getDisplayMetrics()));
+
+			mWeekView2.setColumnGap((int) TypedValue.applyDimension(
+					TypedValue.COMPLEX_UNIT_DIP, 2, getResources()
+							.getDisplayMetrics()));
+			mWeekView2.setTextSize((int) TypedValue.applyDimension(
+					TypedValue.COMPLEX_UNIT_SP, 10, getResources()
+							.getDisplayMetrics()));
+			mWeekView2.setEventTextSize((int) TypedValue.applyDimension(
+					TypedValue.COMPLEX_UNIT_SP, 10, getResources()
+							.getDisplayMetrics()));
+		}
 	}
 
 }

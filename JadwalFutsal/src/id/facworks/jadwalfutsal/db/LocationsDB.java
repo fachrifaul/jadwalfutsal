@@ -40,7 +40,7 @@ public class LocationsDB extends SQLiteOpenHelper {
 	public static final String FIELD_NAME_JAM = "jam";
 
 	private static final String DATABASE_TABLE_JADWAL = "jadwal";
-	public static final String FIELD_ROW_ID_JADWAL = "lid";
+	public static final String FIELD_ID_JADWAL = "id_user";
 	public static final String FIELD_CODE_JADWAL = "code_booking";
 	public static final String FIELD_KATEGORI_JADWAL = "kategori_lapang";
 	public static final String FIELD_TANGGAL_JADWAL = "tanggal";
@@ -332,16 +332,17 @@ public class LocationsDB extends SQLiteOpenHelper {
 
 			do {
 				Lapang info = new Lapang(
-
-				cursor.getString(cursor.getColumnIndex(FIELD_CODE_JADWAL)),
 						cursor.getString(cursor
-								.getColumnIndex(FIELD_KATEGORI_JADWAL)),
+								.getColumnIndex(FIELD_ID_JADWAL)),
+						cursor.getString(cursor.getColumnIndex(FIELD_CODE_JADWAL)),
 						cursor.getString(cursor
-								.getColumnIndex(FIELD_TANGGAL_JADWAL)),
+								.getColumnIndex(FIELD_KATEGORI_JADWAL)), cursor
+								.getString(cursor
+										.getColumnIndex(FIELD_TANGGAL_JADWAL)),
 						cursor.getString(cursor
-								.getColumnIndex(FIELD_JAM_JADWAL)),
-						cursor.getString(cursor
-								.getColumnIndex(FIELD_STATUS_JADWAL)));
+								.getColumnIndex(FIELD_JAM_JADWAL)), cursor
+								.getString(cursor
+										.getColumnIndex(FIELD_STATUS_JADWAL)));
 				jadwal.add(info);
 
 			} while (cursor.moveToNext());
@@ -368,9 +369,10 @@ public class LocationsDB extends SQLiteOpenHelper {
 			cursor.moveToFirst();
 
 			do {
-				Lapang info = new Lapang(
-
-				cursor.getString(cursor.getColumnIndex(FIELD_CODE_JADWAL)),
+				Lapang info = new Lapang(cursor.getString(cursor
+						.getColumnIndex(FIELD_ID_JADWAL)),
+						cursor.getString(cursor
+								.getColumnIndex(FIELD_CODE_JADWAL)),
 						cursor.getString(cursor
 								.getColumnIndex(FIELD_KATEGORI_JADWAL)),
 						cursor.getString(cursor

@@ -2,6 +2,7 @@ package id.facworks.jadwalfutsal;
 
 import id.facworks.jadwalfutsal.conn.WebApi;
 import id.facworks.jadwalfutsal.db.LocationsDB;
+import id.facworks.jadwalfutsal.db.Constants.Extra;
 import id.facworks.jadwalfutsal.view.HintAdapter;
 
 import java.util.Calendar;
@@ -11,9 +12,11 @@ import java.util.Random;
 import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -37,6 +40,9 @@ public class BookingActivity extends Activity {
 	private Random random = new Random();
 	private static final String _CHAR = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
 	private static final int RANDOM_STR_LENGTH = 7;
+
+	private SharedPreferences prefs;
+	String idna;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -220,13 +226,19 @@ public class BookingActivity extends Activity {
 	}
 
 	private String[] readInputValues() {
-		String[] values = new String[5];
+		prefs = PreferenceManager
+				.getDefaultSharedPreferences(getApplicationContext());
+		idna = prefs.getString(Extra.LOGIN_USER_ID_KEY, "");
+		System.out.println("idna: " + idna);
+
+		String[] values = new String[6];
 
 		values[0] = code_booking.getText().toString().trim();
 		values[1] = tanggalnya.getText().toString();
 		values[2] = jammulai.getSelectedItem().toString();
 		values[3] = lapang.getSelectedItem().toString();
 		values[4] = String.valueOf(jenis.getSelectedItemPosition());
+		values[5] = idna;
 		return values;
 	}
 
@@ -240,17 +252,10 @@ public class BookingActivity extends Activity {
 		protected String doInBackground(String... params) {
 			String[] values = readInputValues();
 			String[] lapang = values[3].split("\\-");
-//			int isi = 0;
-//			if (Integer.parseInt(values[4]) == 1) {
-//				isi = 1;
-//			} else if (Integer.parseInt(values[4]) == 2) {
-//				isi = 2;
-//			} else if (Integer.parseInt(values[4]) == 3) {
-//				isi = 3;
-//			}
+
 			try {
 				WebApi api = WebApi.getInstance();
-				return api.submit_lapang(getApplicationContext(), "1",
+				return api.submit_lapang(getApplicationContext(), values[5],
 						(values[0] + "-" + values[4]), lapang[1], values[1],
 						values[2] + ":00", "isi");
 			} catch (Exception e) {

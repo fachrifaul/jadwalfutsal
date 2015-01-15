@@ -5,7 +5,7 @@ import android.os.Parcelable;
 
 public class LapangModel implements Parcelable {
 
-//	private String lid;
+	private String id_user;
 	private String code_booking;
 	private String kategori_lapang;
 	private String tanggal;
@@ -19,7 +19,7 @@ public class LapangModel implements Parcelable {
 
 	public LapangModel(Parcel in) {
 		// TODO Auto-generated constructor stub
-//		lid = in.readString();
+		id_user = in.readString();
 		code_booking = in.readString();
 		kategori_lapang = in.readString();
 		tanggal = in.readString();
@@ -36,7 +36,7 @@ public class LapangModel implements Parcelable {
 	@Override
 	public void writeToParcel(Parcel dest, int flags) {
 		// TODO Auto-generated method stub
-//		dest.writeString(lid);
+		dest.writeString(id_user);
 		dest.writeString(code_booking);
 		dest.writeString(kategori_lapang);
 		dest.writeString(tanggal);
@@ -59,13 +59,13 @@ public class LapangModel implements Parcelable {
 		}
 	};
 
-//	public String getId() {
-//		return lid;
-//	}
-//
-//	public void setId(String lid) {
-//		this.lid = lid;
-//	}
+	public String getid_user() {
+		return id_user;
+	}
+
+	public void setid_user(String id_user) {
+		this.id_user = id_user;
+	}
 
 	public String getcode_booking() {
 		return code_booking;

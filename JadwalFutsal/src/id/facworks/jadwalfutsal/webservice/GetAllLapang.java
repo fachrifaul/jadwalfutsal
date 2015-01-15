@@ -52,6 +52,7 @@ public class GetAllLapang {
 
 					LapangModel rm = new LapangModel();
 					//rm.setId(i.to);
+					rm.setid_user(jo.getString("uid"));
 					rm.setcode_booking(jo.getString("code_booking"));
 					rm.setkategori_lapang(jo.getString("kategori_lapang"));
 					rm.settanggal(jo.getString("tanggal"));

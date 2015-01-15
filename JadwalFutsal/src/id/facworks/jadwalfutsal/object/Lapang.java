@@ -2,11 +2,11 @@ package id.facworks.jadwalfutsal.object;
 
 public class Lapang {
 
-	String  code_booking, kategori_lapang, tanggal, jam, status;
+	String code_booking, kategori_lapang, tanggal, jam, status, user_id;
 
-	public Lapang( String code_booking, String kategori_lapang,
+	public Lapang(String user_id, String code_booking, String kategori_lapang,
 			String tanggal, String jam, String status) {
-		
+		this.user_id = user_id;
 		this.code_booking = code_booking;
 		this.kategori_lapang = kategori_lapang;
 		this.tanggal = tanggal;
@@ -14,7 +14,13 @@ public class Lapang {
 		this.status = status;
 	}
 
+	public String getuser_id() {
+		return user_id;
+	}
 
+	public void setuser_id(String user_id) {
+		this.user_id = user_id;
+	}
 
 	public String getcode_booking() {
 		return code_booking;

@@ -56,7 +56,8 @@ public class GetAllLapang {
 					rm.setcode_booking(jo.getString("code_booking"));
 					rm.setkategori_lapang(jo.getString("kategori_lapang"));
 					rm.settanggal(jo.getString("tanggal"));
-					rm.setjam(jo.getString("jam").toString());
+					rm.setjam_awal(jo.getString("jam_awal").toString());
+					rm.setjam_akhir(jo.getString("jam_akhir").toString());
 					rm.setstatus(jo.getString("status").toString());
 
 					rc.insert(rm);

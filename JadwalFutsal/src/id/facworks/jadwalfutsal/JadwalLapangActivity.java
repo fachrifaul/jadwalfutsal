@@ -35,7 +35,7 @@ public class JadwalLapangActivity extends Activity {
 	private LocationsDB dbHelper_lapang;
 	ArrayList<Lapang> daftarJadwal1 = new ArrayList<Lapang>();
 	ArrayList<Lapang> daftarJadwal2 = new ArrayList<Lapang>();
-	String id, tanggal, jam, status, kategori_lapang, code;
+	String id, tanggal, jam_awal, jam_akhir, status, kategori_lapang, code;
 
 	private static final int TYPE_THREE_DAY_VIEW = 2;
 	private static final int TYPE_WEEK_VIEW = 3;
@@ -107,20 +107,25 @@ public class JadwalLapangActivity extends Activity {
 					id = daftarJadwal1.get(i).getuser_id();
 					code = daftarJadwal1.get(i).getcode_booking();
 					status = daftarJadwal1.get(i).getstatus();
-					jam = daftarJadwal1.get(i).getjam();
+					jam_awal = daftarJadwal1.get(i).getjam_awal();
+					jam_akhir = daftarJadwal1.get(i).getjam_akhir();
 					tanggal = daftarJadwal1.get(i).gettanggal();
 
 					// if (kategori_lapang == "1") {
 					String[] codenya = code.split("\\-");
 					String Tanggal[] = tanggal.split("\\-");
-					String Jam[] = jam.split("\\:");
+					String Jam_Awal[] = jam_awal.split("\\:");
+					String Jam_Akhir[] = jam_akhir.split("\\:");
 
 					System.out.println(" id : " + id);
 					System.out.println(" idlong : " + Long.parseLong(id));
 
 					System.out.println(Tanggal[0] + " - " + Tanggal[1] + " - "
 							+ Tanggal[2] + " - ");
-					System.out.println(Jam[0] + " - " + Jam[1] + " - ");
+					System.out.println(Jam_Awal[0] + " - " + Jam_Awal[1]
+							+ " - ");
+					System.out.println(Jam_Akhir[0] + " - " + Jam_Akhir[1]
+							+ " - ");
 
 					System.out.println("---------" + newMonth + "--"
 							+ Integer.parseInt(Tanggal[1]) + "-"
@@ -131,13 +136,13 @@ public class JadwalLapangActivity extends Activity {
 								Integer.parseInt(Tanggal[0]), Integer
 										.parseInt(Tanggal[1]), Integer
 										.parseInt(Tanggal[2]), Integer
-										.parseInt(Jam[0]), Integer
-										.parseInt(Jam[1]), Integer
+										.parseInt(Jam_Awal[0]), Integer
+										.parseInt(Jam_Awal[1]), Integer
 										.parseInt(Tanggal[0]), Integer
 										.parseInt(Tanggal[1]), Integer
 										.parseInt(Tanggal[2]), Integer
-										.parseInt(Jam[0]) + 1, Integer
-										.parseInt(Jam[1]));
+										.parseInt(Jam_Akhir[0]), Integer
+										.parseInt(Jam_Akhir[1]));
 
 						if (Integer.parseInt(codenya[1]) == 1) {
 							event.setColor(getResources().getColor(
@@ -191,15 +196,20 @@ public class JadwalLapangActivity extends Activity {
 					// kategori_lapang =
 					// daftarJadwal2.get(i).getkategori_lapang();
 					status = daftarJadwal2.get(i).getstatus();
-					jam = daftarJadwal2.get(i).getjam();
+					jam_awal = daftarJadwal2.get(i).getjam_awal();
+					jam_akhir = daftarJadwal2.get(i).getjam_akhir();
 					tanggal = daftarJadwal2.get(i).gettanggal();
 
 					String Tanggal[] = tanggal.split("\\-");
-					String Jam[] = jam.split("\\:");
+					String Jam_Awal[] = jam_awal.split("\\:");
+					String Jam_Akhir[] = jam_akhir.split("\\:");
 
 					System.out.println(Tanggal[0] + " - " + Tanggal[1] + " - "
 							+ Tanggal[2] + " - ");
-					System.out.println(Jam[0] + " - " + Jam[1] + " - ");
+					System.out.println(Jam_Awal[0] + " - " + Jam_Awal[1]
+							+ " - ");
+					System.out.println(Jam_Akhir[0] + " - " + Jam_Akhir[1]
+							+ " - ");
 
 					System.out.println("---------" + newMonth + "--"
 							+ Integer.parseInt(Tanggal[1]) + "-"
@@ -209,14 +219,14 @@ public class JadwalLapangActivity extends Activity {
 						event = new WeekViewEvent(1, status, Integer
 								.parseInt(Tanggal[0]), Integer
 								.parseInt(Tanggal[1]), Integer
-								.parseInt(Tanggal[2]),
-								Integer.parseInt(Jam[0]), Integer
-										.parseInt(Jam[1]), Integer
-										.parseInt(Tanggal[0]), Integer
-										.parseInt(Tanggal[1]), Integer
-										.parseInt(Tanggal[2]), Integer
-										.parseInt(Jam[0]) + 1, Integer
-										.parseInt(Jam[1]));
+								.parseInt(Tanggal[2]), Integer
+								.parseInt(Jam_Awal[0]), Integer
+								.parseInt(Jam_Awal[1]), Integer
+								.parseInt(Tanggal[0]), Integer
+								.parseInt(Tanggal[1]), Integer
+								.parseInt(Tanggal[2]), Integer
+								.parseInt(Jam_Akhir[0]), Integer
+								.parseInt(Jam_Akhir[1]));
 						if (status.toString().toLowerCase() == "kosong") {
 							event.setColor(getResources().getColor(
 									R.color.warna_isi_biasa));

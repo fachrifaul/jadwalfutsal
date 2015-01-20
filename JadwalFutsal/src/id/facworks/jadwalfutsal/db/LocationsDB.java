@@ -44,7 +44,8 @@ public class LocationsDB extends SQLiteOpenHelper {
 	public static final String FIELD_CODE_JADWAL = "code_booking";
 	public static final String FIELD_KATEGORI_JADWAL = "kategori_lapang";
 	public static final String FIELD_TANGGAL_JADWAL = "tanggal";
-	public static final String FIELD_JAM_JADWAL = "jam";
+	public static final String FIELD_JAM_AWAL_JADWAL = "jam_awal";
+	public static final String FIELD_JAM_AKHIR_JADWAL = "jam_akhir";
 	public static final String FIELD_STATUS_JADWAL = "status";
 
 	/** An instance variable for SQLiteDatabase */
@@ -331,18 +332,20 @@ public class LocationsDB extends SQLiteOpenHelper {
 			cursor.moveToFirst();
 
 			do {
-				Lapang info = new Lapang(
+				Lapang info = new Lapang(cursor.getString(cursor
+						.getColumnIndex(FIELD_ID_JADWAL)),
 						cursor.getString(cursor
-								.getColumnIndex(FIELD_ID_JADWAL)),
-						cursor.getString(cursor.getColumnIndex(FIELD_CODE_JADWAL)),
+								.getColumnIndex(FIELD_CODE_JADWAL)),
 						cursor.getString(cursor
-								.getColumnIndex(FIELD_KATEGORI_JADWAL)), cursor
-								.getString(cursor
-										.getColumnIndex(FIELD_TANGGAL_JADWAL)),
+								.getColumnIndex(FIELD_KATEGORI_JADWAL)),
 						cursor.getString(cursor
-								.getColumnIndex(FIELD_JAM_JADWAL)), cursor
-								.getString(cursor
-										.getColumnIndex(FIELD_STATUS_JADWAL)));
+								.getColumnIndex(FIELD_TANGGAL_JADWAL)),
+						cursor.getString(cursor
+								.getColumnIndex(FIELD_JAM_AWAL_JADWAL)),
+						cursor.getString(cursor
+								.getColumnIndex(FIELD_JAM_AKHIR_JADWAL)),
+						cursor.getString(cursor
+								.getColumnIndex(FIELD_STATUS_JADWAL)));
 				jadwal.add(info);
 
 			} while (cursor.moveToNext());
@@ -378,7 +381,9 @@ public class LocationsDB extends SQLiteOpenHelper {
 						cursor.getString(cursor
 								.getColumnIndex(FIELD_TANGGAL_JADWAL)),
 						cursor.getString(cursor
-								.getColumnIndex(FIELD_JAM_JADWAL)),
+								.getColumnIndex(FIELD_JAM_AWAL_JADWAL)),
+						cursor.getString(cursor
+								.getColumnIndex(FIELD_JAM_AKHIR_JADWAL)),
 						cursor.getString(cursor
 								.getColumnIndex(FIELD_STATUS_JADWAL)));
 				jadwal.add(info);

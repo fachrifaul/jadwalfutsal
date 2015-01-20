@@ -19,7 +19,8 @@ public class DatabaseHelper extends SQLiteAssetHelper {
 	public static final String FIELD_CODE_JADWAL = "code_booking";
 	public static final String FIELD_KATEGORI_JADWAL = "kategori_lapang";
 	public static final String FIELD_TANGGAL_JADWAL = "tanggal";
-	public static final String FIELD_JAM_JADWAL = "jam";
+	public static final String FIELD_JAM_AWAL_JADWAL = "jam_awal";
+	public static final String FIELD_JAM_AKHIR_JADWAL = "jam_akhir";
 	public static final String FIELD_STATUS_JADWAL = "status";
 
 	private static DatabaseHelper dbInstance;
@@ -52,17 +53,18 @@ public class DatabaseHelper extends SQLiteAssetHelper {
 		ArrayList<Lapang> daftarLapang = new ArrayList<Lapang>();
 
 		Cursor cursor = db.query(DATABASE_TABLE_JADWAL, new String[] {
-				 FIELD_CODE_JADWAL, FIELD_KATEGORI_JADWAL,
-				FIELD_TANGGAL_JADWAL, FIELD_JAM_JADWAL, FIELD_STATUS_JADWAL },
-				null, null, null, null, FIELD_STATUS_JADWAL);
+				FIELD_CODE_JADWAL, FIELD_KATEGORI_JADWAL, FIELD_TANGGAL_JADWAL,
+				FIELD_JAM_AWAL_JADWAL, FIELD_JAM_AKHIR_JADWAL,
+				FIELD_STATUS_JADWAL }, null, null, null, null,
+				FIELD_STATUS_JADWAL);
 
 		if (cursor.getCount() >= 1) {
 			cursor.moveToFirst();
 
 			do {
 
-				Lapang kamus = new Lapang(
-						cursor.getString(cursor.getColumnIndex(FIELD_ID_JADWAL)),
+				Lapang kamus = new Lapang(cursor.getString(cursor
+						.getColumnIndex(FIELD_ID_JADWAL)),
 						cursor.getString(cursor
 								.getColumnIndex(FIELD_CODE_JADWAL)),
 						cursor.getString(cursor
@@ -70,7 +72,9 @@ public class DatabaseHelper extends SQLiteAssetHelper {
 						cursor.getString(cursor
 								.getColumnIndex(FIELD_TANGGAL_JADWAL)),
 						cursor.getString(cursor
-								.getColumnIndex(FIELD_JAM_JADWAL)),
+								.getColumnIndex(FIELD_JAM_AWAL_JADWAL)),
+						cursor.getString(cursor
+								.getColumnIndex(FIELD_JAM_AKHIR_JADWAL)),
 						cursor.getString(cursor
 								.getColumnIndex(FIELD_STATUS_JADWAL)));
 

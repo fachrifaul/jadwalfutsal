@@ -9,7 +9,8 @@ public class LapangModel implements Parcelable {
 	private String code_booking;
 	private String kategori_lapang;
 	private String tanggal;
-	private String jam;
+	private String jam_awal;
+	private String jam_akhir;
 
 	private String status;
 
@@ -23,7 +24,8 @@ public class LapangModel implements Parcelable {
 		code_booking = in.readString();
 		kategori_lapang = in.readString();
 		tanggal = in.readString();
-		jam = in.readString();
+		jam_awal = in.readString();
+		jam_akhir = in.readString();
 		status = in.readString();
 	}
 
@@ -40,7 +42,8 @@ public class LapangModel implements Parcelable {
 		dest.writeString(code_booking);
 		dest.writeString(kategori_lapang);
 		dest.writeString(tanggal);
-		dest.writeString(jam);
+		dest.writeString(jam_awal);
+		dest.writeString(jam_akhir);
 		dest.writeString(status);
 	}
 
@@ -91,12 +94,19 @@ public class LapangModel implements Parcelable {
 		this.tanggal = tanggal;
 	}
 
-	public String getjam() {
-		return jam;
+	public String getjam_awal() {
+		return jam_awal;
 	}
 
-	public void setjam(String jam) {
-		this.jam = jam;
+	public void setjam_awal(String jam_awal) {
+		this.jam_awal = jam_awal;
+	}
+	public String getjam_akhir() {
+		return jam_akhir;
+	}
+
+	public void setjam_akhir(String jam_akhir) {
+		this.jam_akhir = jam_akhir;
 	}
 
 	public String getstatus() {

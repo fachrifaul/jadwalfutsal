@@ -26,7 +26,8 @@ public class LapangController {
 	private String code_booking = "code_booking";
 	private String kategori_lapang = "kategori_lapang";
 	private String tanggal = "tanggal";
-	private String jam = "jam";
+	private String jam_awal = "jam_awal";
+	private String jam_akhir = "jam_akhir";
 	private String status = "status";
 
 	public LapangController(Context ctx) {
@@ -50,7 +51,8 @@ public class LapangController {
 			cv.put(code_booking, rm.getcode_booking());
 			cv.put(kategori_lapang, rm.getkategori_lapang());
 			cv.put(tanggal, rm.gettanggal());
-			cv.put(jam, rm.getjam());
+			cv.put(jam_awal, rm.getjam_awal());
+			cv.put(jam_akhir, rm.getjam_akhir());
 			cv.put(status, rm.getstatus());
 			dbHelper.insertRecordsInDB(table, cv);
 			values.clear();
@@ -76,7 +78,8 @@ public class LapangController {
 				cv.put(code_booking, rm.getcode_booking());
 				cv.put(kategori_lapang, rm.getkategori_lapang());
 				cv.put(tanggal, rm.gettanggal());
-				cv.put(jam, rm.getjam());
+				cv.put(jam_awal, rm.getjam_awal());
+				cv.put(jam_akhir, rm.getjam_akhir());
 				cv.put(status, rm.getstatus());
 				dbHelper.insertRecordsInDB(table, cv);
 				cv.clear();
@@ -103,7 +106,8 @@ public class LapangController {
 				rm.setcode_booking(c.getString(c.getColumnIndex(code_booking)));
 				rm.setkategori_lapang(c.getString(c.getColumnIndex(kategori_lapang)));
 				rm.settanggal(c.getString(c.getColumnIndex(tanggal)));
-				rm.setjam(c.getString(c.getColumnIndex(jam)));
+				rm.setjam_awal(c.getString(c.getColumnIndex(jam_awal)));
+				rm.setjam_akhir(c.getString(c.getColumnIndex(jam_akhir)));
 				rm.setstatus(c.getString(c.getColumnIndex(status)));
 				objects.add(rm);
 			}

@@ -67,12 +67,15 @@ public class WebApi {
 					String Tanggal_Booking = jso
 							.getString(Constants.TANGGAL_LAPANG);
 					String Tanggal[] = Tanggal_Booking.split("\\-");
-					String Jam_Booking = jso.getString(Constants.JAM_LAPANG);
-					String Jam[] = Jam_Booking.split("\\:");
+					String Jam_Mulai_Booking = jso.getString(Constants.JAM_MULAI_LAPANG);
+					String Jam_Akhir_Booking = jso.getString(Constants.JAM_MULAI_LAPANG);
+					String Jam_Mulai[] = Jam_Mulai_Booking.split("\\:");
+					String Jam_Akhir[] = Jam_Akhir_Booking.split("\\:");
 
 					System.out.println(Tanggal[0] + " - " + Tanggal[1] + " - "
 							+ Tanggal[2] + " - ");
-					System.out.println(Jam[0] + " - " + Jam[1] + " - ");
+					System.out.println(Jam_Mulai[0] + " - " + Jam_Mulai[1] + " - ");
+					System.out.println(Jam_Akhir[0] + " - " + Jam_Akhir[1] + " - ");
 
 					event = new WeekViewEvent(Long.parseLong(jso
 							.getString(Constants.ID_LAPANG)),
@@ -80,12 +83,13 @@ public class WebApi {
 							Integer.parseInt(Tanggal[0]),
 							Integer.parseInt(Tanggal[1]),
 							Integer.parseInt(Tanggal[2]),
-							Integer.parseInt(Jam[0]), Integer.parseInt(Jam[1]),
+							Integer.parseInt(Jam_Mulai[0]), 
+							Integer.parseInt(Jam_Mulai[1]),
 							Integer.parseInt(Tanggal[0]),
 							Integer.parseInt(Tanggal[1]),
 							Integer.parseInt(Tanggal[2]),
-							Integer.parseInt(Jam[0]) + 1,
-							Integer.parseInt(Jam[1]));
+							Integer.parseInt(Jam_Akhir[0]),
+							Integer.parseInt(Jam_Akhir[1]));
 
 					arrayLapang.add(event);
 				}
@@ -202,14 +206,15 @@ public class WebApi {
 
 	public String submit_lapang(Context context, String id_user,
 			String code_booking, String kategori_lapang, String tanggal,
-			String jam, String status) {
+			String jam_awal,String jam_akhir, String status) {
 
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
 		params.add(new BasicNameValuePair("id_user", id_user));
 		params.add(new BasicNameValuePair("code_booking", code_booking));
 		params.add(new BasicNameValuePair("kategori_lapang", kategori_lapang));
 		params.add(new BasicNameValuePair("tanggal", tanggal));
-		params.add(new BasicNameValuePair("jam", jam));
+		params.add(new BasicNameValuePair("jam_awal", jam_awal));
+		params.add(new BasicNameValuePair("jam_akhir", jam_akhir));
 		params.add(new BasicNameValuePair("status", status));
 
 		// getting JSON Object

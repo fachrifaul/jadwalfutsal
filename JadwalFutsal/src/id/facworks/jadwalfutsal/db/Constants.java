@@ -67,7 +67,8 @@ public final class Constants {
 	public static final String ID_LAPANG	 		= "lid";
 	public static final String KATEGORI_LAPANG 		= "kategori_lapang";
 	public static final String TANGGAL_LAPANG		= "tanggal";
-	public static final String JAM_LAPANG 			= "jam";
+	public static final String JAM_MULAI_LAPANG 	= "jam_awal";
+	public static final String JAM_AKHIR_LAPANG 	= "jam_akhir";
 	public static final String STATUS_lAPANG 		= "status";
 	
 }

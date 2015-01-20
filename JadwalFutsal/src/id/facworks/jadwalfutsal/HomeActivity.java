@@ -169,6 +169,8 @@ public class HomeActivity extends TabActivity {
 				item_login.setVisible(!visible);
 				return true;
 			} else {
+				MenuItem item_booking = menu.findItem(R.id.item_booking);
+				item_booking.setVisible(!visible);
 				MenuItem item_profile = menu.findItem(R.id.item_profile);
 				item_profile.setVisible(!visible);
 				MenuItem item_exit = menu.findItem(R.id.item_exit);

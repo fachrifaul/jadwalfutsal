@@ -231,7 +231,7 @@ public class BookingActivity extends Activity {
 		idna = prefs.getString(Extra.LOGIN_USER_ID_KEY, "");
 		System.out.println("idna: " + idna);
 
-		String[] values = new String[6];
+		String[] values = new String[7];
 
 		values[0] = code_booking.getText().toString().trim();
 		values[1] = tanggalnya.getText().toString();
@@ -239,6 +239,7 @@ public class BookingActivity extends Activity {
 		values[3] = lapang.getSelectedItem().toString();
 		values[4] = String.valueOf(jenis.getSelectedItemPosition());
 		values[5] = idna;
+		values[6] = jamakhir.getSelectedItem().toString();
 		return values;
 	}
 
@@ -257,7 +258,7 @@ public class BookingActivity extends Activity {
 				WebApi api = WebApi.getInstance();
 				return api.submit_lapang(getApplicationContext(), values[5],
 						(values[0] + "-" + values[4]), lapang[1], values[1],
-						values[2] + ":00", "isi");
+						values[2] + ":00", values[6] + ":00", "kosong");
 			} catch (Exception e) {
 				e.printStackTrace();
 				return e.getMessage();

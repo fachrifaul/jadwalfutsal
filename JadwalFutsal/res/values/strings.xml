@@ -17,6 +17,7 @@
     <!-- Dialog -->
     <string name="dialog_norek">No Rekening</string>
     <string name="dialog_booking">Booking</string>
+    <string name="dialog_lawan_booking">Lawan Booking</string>
     <string name="dialog_atas_nama">A/N</string>
     <string name="dialog_tanggal">Tanggal</string>
     <string name="dialog_no_hp">No Handphone</string>

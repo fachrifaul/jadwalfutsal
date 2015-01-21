@@ -7,6 +7,7 @@ import id.facworks.jadwalfutsal.object.Lapang;
 import id.facworks.jadwalfutsal.object.User;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import android.app.Activity;
@@ -23,6 +24,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.alamkanak.weekview.WeekView;
+import com.alamkanak.weekview.WeekView.EmptyViewClickListener;
 import com.alamkanak.weekview.WeekView.EventClickListener;
 import com.alamkanak.weekview.WeekView.MonthChangeListener;
 import com.alamkanak.weekview.WeekViewEvent;
@@ -65,6 +67,14 @@ public class JadwalLapangActivity extends Activity {
 		daftarJadwal2 = dbHelper_lapang.getAllLapang2();
 
 		mWeekView = (WeekView) findViewById(R.id.weekViewLapang1);
+		mWeekView.setEmptyViewClickListener(new EmptyViewClickListener() {
+
+			@Override
+			public void onEmptyViewClicked(Calendar time) {
+				// TODO Auto-generated method stub
+				System.out.println("idlawan: ahay");
+			}
+		});
 		mWeekView.setOnEventClickListener(new EventClickListener() {
 
 			public void onEventClick(WeekViewEvent event, RectF eventRect) {
@@ -77,17 +87,25 @@ public class JadwalLapangActivity extends Activity {
 
 					System.out.println("idlawan: " + event.getId());
 					System.out.println("name: " + event.getName());
-					// int siz = daftarJadwal1.size();
-					// for (int i = 0; i < siz; i++) {
-					// code = daftarJadwal1.get(i).getcode_booking();
-					// String[] codenya = code.split("\\-");
-					// if (Integer.parseInt(codenya[1]) == 3) {
+					System.out.println("awal: "
+							+ getEventTitle(event.getStartTime()));
+					System.out.println("akhir: "
+							+ getEventTitle(event.getEndTime()));
 
-					// }else{
-					//
-					// }
-					// }
-					carilawan(String.valueOf(event.getId()));
+					if (event.getName() == "Cari Lawan") {
+						Calendar time = event.getStartTime();
+						Calendar time2 = event.getEndTime();
+
+						carilawan(String.valueOf(event.getId()),
+								time.get(Calendar.HOUR_OF_DAY),
+								time.get(Calendar.MINUTE),
+								time.get(Calendar.YEAR),
+								time.get(Calendar.MONTH) + 1,
+								time.get(Calendar.DAY_OF_MONTH),
+								time2.get(Calendar.HOUR_OF_DAY),
+								time2.get(Calendar.MINUTE));
+					} else
+						System.out.println("name: " + event.getName());
 
 				} else {
 					logindialog();
@@ -106,7 +124,7 @@ public class JadwalLapangActivity extends Activity {
 				for (int i = 0; i < siz; i++) {
 					id = daftarJadwal1.get(i).getuser_id();
 					code = daftarJadwal1.get(i).getcode_booking();
-					status = daftarJadwal1.get(i).getstatus();
+					// status = daftarJadwal1.get(i).getstatus();
 					jam_awal = daftarJadwal1.get(i).getjam_awal();
 					jam_akhir = daftarJadwal1.get(i).getjam_akhir();
 					tanggal = daftarJadwal1.get(i).gettanggal();
@@ -127,11 +145,22 @@ public class JadwalLapangActivity extends Activity {
 					System.out.println(Jam_Akhir[0] + " - " + Jam_Akhir[1]
 							+ " - ");
 
-					System.out.println("---------" + newMonth + "--"
-							+ Integer.parseInt(Tanggal[1]) + "-"
-							+ status.toString().toLowerCase());
+					// System.out.println("---------" + newMonth + "--"
+					// + Integer.parseInt(Tanggal[1]) + "-"
+					// + status.toString().toLowerCase());
 
 					if (newMonth == Integer.parseInt(Tanggal[1])) {
+
+						if (Integer.parseInt(codenya[1]) == 1) {
+							status = "Member";
+						} else if (Integer.parseInt(codenya[1]) == 2) {
+							status = "Booking Biasa";
+						} else if (Integer.parseInt(codenya[1]) == 3) {
+							status = "Cari Lawan";
+						} else {
+							status = "Lawan";
+						}
+
 						event = new WeekViewEvent(Long.parseLong(id), status,
 								Integer.parseInt(Tanggal[0]), Integer
 										.parseInt(Tanggal[1]), Integer
@@ -178,7 +207,13 @@ public class JadwalLapangActivity extends Activity {
 				if ((prefs.contains(Extra.LOGIN_USER_ID_KEY))
 						&& (!prefs.getString(Extra.LOGIN_USER_ID_KEY, "")
 								.equals(""))) {
-					bookingdialog();
+					System.out.println("idlawan: " + event.getId());
+					System.out.println("name: " + event.getName());
+
+					if (event.getName() == "Cari Lawan") {
+						// carilawan(String.valueOf(event.getId()));
+					} else
+						System.out.println("name: " + event.getName());
 
 				} else {
 					logindialog();
@@ -195,11 +230,13 @@ public class JadwalLapangActivity extends Activity {
 					// id = daftarJadwal.get(i).getID();
 					// kategori_lapang =
 					// daftarJadwal2.get(i).getkategori_lapang();
-					status = daftarJadwal2.get(i).getstatus();
+					// status = daftarJadwal2.get(i).getstatus();
+					code = daftarJadwal2.get(i).getcode_booking();
 					jam_awal = daftarJadwal2.get(i).getjam_awal();
 					jam_akhir = daftarJadwal2.get(i).getjam_akhir();
 					tanggal = daftarJadwal2.get(i).gettanggal();
 
+					String[] codenya = code.split("\\-");
 					String Tanggal[] = tanggal.split("\\-");
 					String Jam_Awal[] = jam_awal.split("\\:");
 					String Jam_Akhir[] = jam_akhir.split("\\:");
@@ -216,6 +253,17 @@ public class JadwalLapangActivity extends Activity {
 							+ status.toString().toLowerCase());
 
 					if (newMonth == Integer.parseInt(Tanggal[1])) {
+
+						if (Integer.parseInt(codenya[1]) == 1) {
+							status = "Member";
+						} else if (Integer.parseInt(codenya[1]) == 2) {
+							status = "Booking Biasa";
+						} else if (Integer.parseInt(codenya[1]) == 3) {
+							status = "Cari Lawan";
+						} else {
+							status = "Lawan";
+						}
+
 						event = new WeekViewEvent(1, status, Integer
 								.parseInt(Tanggal[0]), Integer
 								.parseInt(Tanggal[1]), Integer
@@ -227,13 +275,21 @@ public class JadwalLapangActivity extends Activity {
 								.parseInt(Tanggal[2]), Integer
 								.parseInt(Jam_Akhir[0]), Integer
 								.parseInt(Jam_Akhir[1]));
-						if (status.toString().toLowerCase() == "kosong") {
+
+						if (Integer.parseInt(codenya[1]) == 1) {
 							event.setColor(getResources().getColor(
-									R.color.warna_isi_biasa));
+									R.color.biru_member));
+						} else if (Integer.parseInt(codenya[1]) == 2) {
+							event.setColor(getResources().getColor(
+									R.color.kuning_biasa));
+						} else if (Integer.parseInt(codenya[1]) == 3) {
+							event.setColor(getResources().getColor(
+									R.color.merah_lawan));
 						} else {
 							event.setColor(getResources().getColor(
-									R.color.warna_kosong));
+									R.color.hijau_teuing));
 						}
+
 						events.add(event);
 					}
 				}
@@ -301,7 +357,9 @@ public class JadwalLapangActivity extends Activity {
 		efekdong();
 	}
 
-	public void carilawan(String id_lawan) {
+	public void carilawan(String id_lawan, final int jam_awal,
+			final int menit_awal, final int tahun_awal, final int bulan_awal,
+			final int hari_awal, final int jam_akhir, final int menit_akhir) {
 		final Dialog dialog;
 		dialog = new Dialog(JadwalLapangActivity.this);
 		dialog.setContentView(R.layout.layout_dialog_carilawan);
@@ -317,6 +375,24 @@ public class JadwalLapangActivity extends Activity {
 					@Override
 					public void onClick(View view) {
 						dialog.dismiss();
+					}
+				});
+		dialog.findViewById(R.id.lawan_button).setOnClickListener(
+				new View.OnClickListener() {
+					@Override
+					public void onClick(View view) {
+						finish();
+						Intent i = new Intent(getApplicationContext(),
+								LawanBookingActivity.class);
+						i.putExtra("jam_awal", jam_awal);
+						i.putExtra("menit_awal", menit_awal);
+						i.putExtra("jam_akhir", jam_akhir);
+						i.putExtra("menit_akhir", menit_akhir);
+						i.putExtra("hari_awal", hari_awal);
+						i.putExtra("bulan_awal", bulan_awal);
+						i.putExtra("tahun_awal", tahun_awal);
+						startActivity(i);
+						efekdong();
 					}
 				});
 
@@ -401,6 +477,13 @@ public class JadwalLapangActivity extends Activity {
 					TypedValue.COMPLEX_UNIT_SP, 10, getResources()
 							.getDisplayMetrics()));
 		}
+	}
+
+	private String getEventTitle(Calendar time) {
+		return String.format("Event of %02d:%02d %d/%s/%d",
+				time.get(Calendar.HOUR_OF_DAY), time.get(Calendar.MINUTE),
+				time.get(Calendar.YEAR), time.get(Calendar.MONTH) + 1,
+				time.get(Calendar.DAY_OF_MONTH));
 	}
 
 }

@@ -41,6 +41,10 @@
             android:name="id.facworks.jadwalfutsal.BookingActivity"
             android:label="@string/app_name_2" >
         </activity>
+        <activity
+            android:name="id.facworks.jadwalfutsal.LawanBookingActivity"
+            android:label="@string/app_name_2" >
+        </activity>
 
         <provider
             android:name="id.facworks.jadwalfutsal.db.LocationsContentProvider"
